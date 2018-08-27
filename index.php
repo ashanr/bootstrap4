@@ -31,6 +31,10 @@ require_once './config/dbc.php';
                 document.write('<link rel="stylesheet" id="theme-style" href="css/app.css">');
             }
         </script>
+
+
+        <!--load CSS styles-->
+<?php require_once './include/systemHeader.php'; ?>  
     </head>
     <body>
         <div class="auth">
