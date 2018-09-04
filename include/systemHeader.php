@@ -1,18 +1,33 @@
-<?php //Ashan Rajapaksha 2018
-
+<?php
+//Ashan Rajapaksha 2018 PHP Version 7.0
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-
 ?>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta charset="UTF-8">
-<title>::: Test System :::</title>      
-<link rel="shortcut icon" href="img/camera.png">
 
-<!--<link type="text/css" href="css/style.css" rel="stylesheet" >-->
-<!-- DataTables CSS -->
-<link rel="stylesheet" type="text/css" href="css/jquery.dataTables.css">
-<link type="text/css" href="css/coop_info.css" rel="stylesheet" >
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<title> B4 Admin</title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="shortcut icon" href="icon.png">
+<link rel="apple-touch-icon" href="home.ico">
+<!-- Place favicon.ico in the root directory -->
+
+<link rel="stylesheet" href="css/vendor.css">
+<!-- Theme initialization -->
+<script>
+    var themeSettings = (localStorage.getItem('themeSettings')) ? JSON.parse(localStorage.getItem('themeSettings')) :
+            {};
+    var themeName = themeSettings.themeName || '';
+    if (themeName)
+    {
+        document.write('<link rel="stylesheet" id="theme-style" href="css/app-' + themeName + '.css">');
+    } else
+    {
+        document.write('<link rel="stylesheet" id="theme-style" href="css/app.css">');
+    }
+</script>
+
 <style type="text/css">
     .stylecss {
         text-decoration: none;
