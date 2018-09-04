@@ -1,4 +1,4 @@
-<?php //Ashan Rajapaksha
+<?php //Ashan Rajapaksha 2018
 
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
@@ -8,22 +8,7 @@ ini_set('display_errors', 1);
 <meta charset="UTF-8">
 <title>::: Test System :::</title>      
 <link rel="shortcut icon" href="img/camera.png">
-<link type="text/css" href="css/bootstrap.css" rel="stylesheet">        
-<link type="text/css" href="css/todc-bootstrap.css" rel="stylesheet">
-<link type="text/css" href="css/custom.css" rel="stylesheet">
-<link type="text/css" href="css/alertify.core.css" rel="stylesheet">
-<link type="text/css" href="css/alertify.default.css" rel="stylesheet">
-<link type="text/css" href="css/chosen.css" rel="stylesheet">
-<link type="text/css" href="css/chosen-custom.css" rel="stylesheet">
-<link type="text/css" href="css/datepicker.css" rel="stylesheet">
-<link type="text/css" href="css/font-awesome.css" rel="stylesheet">
-<link type="text/css" href="css/bootstrap-switch.css" rel="stylesheet">
-<link type="text/css" href="css/docs.css" rel="stylesheet">
-<link type="text/css" href="css/bootstrap_dataTable.css" rel="stylesheet">
-<link type="text/css" href="css/hover.css" rel="stylesheet">
-<link type="text/css" href="css/bootsnipFilterTable.css" rel="stylesheet" >
-<link type="text/css" href="css/animationEffect.css" rel="stylesheet" >
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/t/dt/dt-1.10.11/datatables.min.css"/>
+
 <!--<link type="text/css" href="css/style.css" rel="stylesheet" >-->
 <!-- DataTables CSS -->
 <link rel="stylesheet" type="text/css" href="css/jquery.dataTables.css">
