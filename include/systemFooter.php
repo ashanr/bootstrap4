@@ -1,6 +1,9 @@
 <!-- THEME JS -->
-<script type="text/javascript" src="js/vendor.js"></script>
 <script type="text/javascript" src="js/app.js"></script>
+<script type="text/javascript" src="js/vendor.js"></script>
+<script type="text/javascript" src="js/popper/popper.js"></script>
+<script type="text/javascript" src="js/popper/popper.js.map"></script>
+
 
 <script type="text/javascript" src="js/systemConfig.js"></script>
 <script type="text/javascript" src="js/loadTables.js"></script>

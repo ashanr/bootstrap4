@@ -13,6 +13,7 @@ ini_set('display_errors', 1);
 <link rel="apple-touch-icon" href="home.ico">
 <!-- Place favicon.ico in the root directory -->
 
+<link rel="stylesheet" href="css/app.css">
 <link rel="stylesheet" href="css/vendor.css">
 <!-- Theme initialization -->
 <script>
