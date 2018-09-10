@@ -2,7 +2,12 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-if (!isset($_COOKIE['client_session'])) {
+
+require_once './config/dbc.php';
+require_once './class/systemSetting.php';
+$system = new setting();
+session_start();
+if (!isset($_SESSION['user_id'])) {
     header("location:index.php");
 }
 ?>
@@ -135,32 +140,32 @@ if (!isset($_COOKIE['client_session'])) {
                 <?PHP require 'include/systemFooter.php'; ?>
             </div>
         </div>
-  
 
 
-    <!-- Reference block for JS -->
-    <div class="ref" id="ref">
-        <div class="color-primary"></div>
-        <div class="chart">
+
+        <!-- Reference block for JS -->
+        <div class="ref" id="ref">
             <div class="color-primary"></div>
-            <div class="color-secondary"></div>
+            <div class="chart">
+                <div class="color-primary"></div>
+                <div class="color-secondary"></div>
+            </div>
         </div>
-    </div>
-    <script src="js/vendor.js"></script>
-    <script src="js/app.js"></script>
-    <script type="text/javascript">
+        <script src="js/vendor.js"></script>
+        <script src="js/app.js"></script>
+        <script type="text/javascript">
 
-        $(function () {
-            $('#logout').click(function () {
-                logout();
+            $(function () {
+                $('#logout').click(function () {
+                    logout();
+                });
+
             });
 
-        });
 
 
 
 
-
-    </script>
-</body>
+        </script>
+    </body>
 </html>

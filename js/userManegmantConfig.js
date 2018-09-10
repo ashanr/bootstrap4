@@ -80,7 +80,7 @@ function checkurl() {
  */
 function  login(userName, password, remember) {
 
-    $.post("Models/checkUsersAndPrivilages.php", {logSystem: 'login', username: userName, password: password, remember: remember}, function (e) {
+    $.post("Models/checkUsersAndPrivilages.php", {logSystem: 'login', userName: userName, password: password, remember: remember}, function (e) {
 
         if (e === undefined || e.length === 0 || e === null) {
             alertify.error("System Error Occured", 2000);
