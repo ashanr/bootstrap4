@@ -2,18 +2,26 @@
 //session_start();
 //session_regenerate_id(true);
 // load database configurations
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+/*
+//define('WEBROOT', str_replace(search: "Webroot/index.php", replace: "", $_SERVER["SCRIPT_NAME"]));
+//define('WEBROOT', str_replace(search: "Webroot/index.php", replace: "", $_SERVER["SCRIPT_FILENAME"]));
+
+require_(ROOT. 'Config/core.php');
+require_(ROOT. 'router.php');
+require_(ROOT. 'request.php');
+require_(ROOT. 'dispatcher.php');
+
+$dispatch = new Dispatcher();
+$dispatch->dispatch();
+
+*/
 require_once './config/dbc.php';
 ?>
 <!doctype html>
-<html class="no-js" lang="en">
+<html lang="en">
     <head>
-        
-
-
-        <!--load CSS styles-->
-<?php require_once './include/systemHeader.php'; ?>  
+        <?php require_once './include/Header.php'; ?>
+<?php require_once './include/systemHeader.php'; ?>
     </head>
     <body>
         <div class="auth">
@@ -61,43 +69,14 @@ require_once './config/dbc.php';
         <?php require_once './include/systemFooter.php'; ?>
                 <script type="text/javascript">
 
-        //
+        
                     $(function () {
-
-        //                starterBgSlideTransition();
-
-                        $(document).ready(function ()
-                        {
-                            $(document).bind("contextmenu", function (e) {
-        //                        return false;
-                            });
-                        });
-
-                        document.onkeypress = function (event) {
-                            event = (event || window.event);
-                            if (event.keyCode == 123) {
-                                //alert('No F-12');
-        //                        return false;
-                            }
-                        }
-                        document.onmousedown = function (event) {
-                            event = (event || window.event);
-                            if (event.keyCode == 123) {
-                                //alert('No F-keys');
-        //                        return false;
-                            }
-                        }
-                        document.onkeydown = function (event) {
-                            event = (event || window.event);
-                            if (event.keyCode == 123) {
-                                //alert('No F-keys');
-        //                        return false;
-                            }
-                        }
-
+                        
+                        
                     });
-                </script>
 
+     
+</script>
 
     </body>
 </html>

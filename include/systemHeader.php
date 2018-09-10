@@ -1,33 +1,10 @@
-<?php
-//Ashan Rajapaksha 2018 PHP Version 7.0
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-?>
-
-<meta charset="utf-8">
-<meta http-equiv="x-ua-compatible" content="ie=edge">
-<title> B4 Admin</title>
-<meta name="description" content="">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="shortcut icon" href="icon.png">
-<link rel="apple-touch-icon" href="home.ico">
-<!-- Place favicon.ico in the root directory -->
-
-<link rel="stylesheet" href="css/app.css">
-<link rel="stylesheet" href="css/vendor.css">
-<!-- Theme initialization -->
-<script>
-    var themeSettings = (localStorage.getItem('themeSettings')) ? JSON.parse(localStorage.getItem('themeSettings')) :
-            {};
-    var themeName = themeSettings.themeName || '';
-    if (themeName)
-    {
-        document.write('<link rel="stylesheet" id="theme-style" href="css/app-' + themeName + '.css">');
-    } else
-    {
-        document.write('<link rel="stylesheet" id="theme-style" href="css/app.css">');
-    }
-</script>
+ <!--load CSS styles--> 
+ 
+ <!--Alertify-->
+<link type="text/css" href="css/alertify/alertify.css" rel="stylesheet">
+<link type="text/css" href="css/alertify/alertify.min.css" rel="stylesheet">
+<link type="text/css" href="css/alertify/alertify.rtl.css" rel="stylesheet">
+<link type="text/css" href="css/alertify/alertify.rtl.min.css" rel="stylesheet">
 
 <style type="text/css">
     .stylecss {
@@ -83,3 +60,5 @@ ini_set('display_errors', 1);
         border: 2px solid #333;
     }
 </style>
+
+

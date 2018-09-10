@@ -1,32 +1,36 @@
-  function inputKeyUp(e) {
-                e.which = e.which || e.keyCode;
-                if (e.which === 13) {
-                    var userName = $('#userName').val();
-                    var password = $('#password').val();
+$(function () {
 
-                    if ($('#remember').prop('checked')) {
-                        var remember = "r";
-                    } else {
-                        var remember = "nr";
-                    }
-                    login(userName, password, remember);
-                }
-            }
+    $('#logSystem').click(function () {
+        var userName = $('#userName').val();
+        var password = $('#password').val();
+        login(userName, password);
+    });
 
-            $(function () {
-                $('.showHidePwd').on('change', function () {
-                    $('#password').hideShowPassword($(this).prop('checked'));
-                });
 
-                $('#logSystem').click(function () {
-                    var userName = $('#userName').val();
-                    var password = $('#password').val();
-                    var remember = "nr";
-                    login(userName, password, remember);
-                });
-            });
 
-function confirm(heading, question, cancelButtonTxt, okButtonTxt, callback) {
+    $(document).on('keypress', function (e) {
+        // console.log("hello");
+        inputKeyUp(e)
+    });
+
+});
+
+function inputKeyUp(e) {
+    e.which = e.which || e.keyCode;
+    if (e.which === 13) {
+        var userName = $('#userName').val();
+        var password = $('#password').val();
+        login(userName, password);
+    }
+}
+
+function logout() {
+
+    logoutconfirm('Logout', 'Are you sure want to log out the system', 'Cancel', 'Yes', function () {
+    });
+}
+
+function logoutconfirm(heading, question, cancelButtonTxt, okButtonTxt, callback) {
     var confirmModal = $('<div class="modal fade">' +
             '<div class="modal-dialog">' +
             '<div class="modal-content">' +
@@ -38,22 +42,29 @@ function confirm(heading, question, cancelButtonTxt, okButtonTxt, callback) {
             '<p>' + question + '</p>' +
             '</div>' +
             '<div class="modal-footer">' +
-            '<button type="button" class="btn btn-default" data-dismiss="modal">' + cancelButtonTxt + '</button>' +
+            '<button type="button" class="btn btn-default" data-dismiss="modal" id="cancelButton">' + cancelButtonTxt + '</button>' +
             '<button type="button" class="btn btn-primary" id="OkButton">' + okButtonTxt + '</button>' +
             '</div>' +
             '</div>' +
             '</div>' +
             '</div>');
-    confirmModal.find('#OkButton').click(function(event) {
-        callback();
+
+    confirmModal.find('#OkButton').click(function (event) {
+        timelyRedirect("index.php", 250);
+//              callback();
         confirmModal.modal('hide');
     });
+
+    confirmModal.find('#cancelButton').click(function (event) {
+        confirmModal.modal('hide');
+    });
+
     confirmModal.modal('show');
 }
 
 function checkurl() {
     var pathname = location.pathname;  // window.location.pathname;
-    $.post("views/checkUsersAndPrivilages.php", {checkUrl: 'login', path: pathname}, function(e) {
+    $.post("views/checkUsersAndPrivilages.php", {checkUrl: 'login', path: pathname}, function (e) {
         if (e.ok > '0') {
         } else {
             timelyRedirect("index.php", 0);
@@ -68,20 +79,32 @@ function checkurl() {
  * @returns {undefined}
  */
 function  login(userName, password, remember) {
-    $.post("views/checkUsersAndPrivilages.php", {logSystem: 'login', userName: userName, password: password, remember: remember}, function(e) {
+
+    $.post("Models/checkUsersAndPrivilages.php", {logSystem: 'login', username: userName, password: password, remember: remember}, function (e) {
+
         if (e === undefined || e.length === 0 || e === null) {
             alertify.error("System Error Occured", 2000);
         } else {
-            $.each(e, function(index, msgData) {
+            $.each(e, function (index, msgData) {
                 if (msgData.msgType === 0) {
-//                    alertify.success(msgData.msg, 1450)
+                    var msg1 = alertify.success(msgData.msg);
+                    alertify.set('notifier', 'position', 'bottom-right');
+                  //  msg1.delay(3).setContent(msgData.msg);
                     timelyRedirect("dashboard.php", 500);
                 } else if (msgData.msgType === 1) {
-                    alertify.error(msgData.msg, 2000);
+
+                    var msg = alertify.error(msgData.msg);
+                    alertify.set('notifier', 'position', 'bottom-right');
+                    msg.delay(3).setContent(msgData.msg);
                 } else if (msgData.msgType === 2) {
-                    alertify.error(msgData.msg, 2000);
+
+                    var msg = alertify.error(msgData.msg);
+                    alertify.set('notifier', 'position', 'bottom-right');
+                    msg.delay(3).setContent(msgData.msg);
                 } else if (msgData.msgType === 3) {
-                    alertify.error(msgData.msg, 2000);
+                    var msg = alertify.error(msgData.msg);
+                    alertify.set('notifier', 'position', 'bottom-right');
+                    msg.delay(3).setContent(msgData.msg);
                 }
             });
         }
@@ -89,22 +112,11 @@ function  login(userName, password, remember) {
 }
 
 function timelyRedirect(url, delay) {
-    setTimeout(function() {
+    setTimeout(function () {
         window.location = url;
     }, delay);
 }
 
-function logout() {
-    alertify.confirm("Are you sure want to log out the system", function(e) {
-        if (e) {
-            $.post("views/checkUsersAndPrivilages.php", {logout: 'logout'}, function(e) {
-                if (e == 1) {
-                    timelyRedirect("index.php", 250);
-                }
-            });
-        }
-    });
-}
 
 //function pageProtect() {
 //    $.post("views/checkUsersAndPrivilages.php", {pageProtect: 'data'}, function(e) {
@@ -115,7 +127,7 @@ function logout() {
 //}
 
 function pageProtect() {
-    $.post("views/checkUsersAndPrivilages.php", {pageProtect: 'data'}, function(e) {
+    $.post("views/checkUsersAndPrivilages.php", {pageProtect: 'data'}, function (e) {
         if (e == 1) {
             timelyRedirect("index.php", 0);
         }
@@ -143,8 +155,8 @@ function clearUserLevelFelds() {
 
 function saveUserLevel() {
     var userLevel = $('#userLevel').val();
-    $.post("views/userManegmentView.php", {action: 'saveAdminLevels', userLevel: userLevel}, function(e) {
-        alertifyMsgDisplay(e, 1000, function() {
+    $.post("views/userManegmentView.php", {action: 'saveAdminLevels', userLevel: userLevel}, function (e) {
+        alertifyMsgDisplay(e, 1000, function () {
             clearUserLevelFelds();
             userLevelTble();
             get_userlecelCombo();
@@ -156,8 +168,8 @@ function saveUserLevel() {
 function savePrivillegeLevel() {
     var UserLevelPrivillage = $('.UserLevelPrivillage').val();
     var selUserPrivilege = $('#selUserPrivilege').val();
-    $.post("views/userManegmentView.php", {action: 'savePrivillegeLevels', selUserLevel: UserLevelPrivillage, selUserPrivilege: selUserPrivilege}, function(e) {
-        alertifyMsgDisplay(e, 1000, function() {
+    $.post("views/userManegmentView.php", {action: 'savePrivillegeLevels', selUserLevel: UserLevelPrivillage, selUserPrivilege: selUserPrivilege}, function (e) {
+        alertifyMsgDisplay(e, 1000, function () {
             //clearUserLevelFelds();
             userPrivillegeTble($('.UserLevelPrivillage').val());
         });
@@ -165,12 +177,12 @@ function savePrivillegeLevel() {
 }
 function userLevelTble() {
     var tableData = '';
-    $.post("views/userManegmentView.php", {action: "userLevelTbl"}, function(e) {
+    $.post("views/userManegmentView.php", {action: "userLevelTbl"}, function (e) {
         if (e === undefined || e.length === 0 || e === null) {
             tableData += '<tr><th colspan="4" class="alert alert-warning text-center"> -- No Data Found -- </th></tr>';
             $('.userLevelTble tbody').html('').append(tableData);
         } else {
-            $.each(e, function(index, qData) {
+            $.each(e, function (index, qData) {
                 index++;
                 if (qData.usrLvlPrvSeq === '20') {
                 } else {
@@ -184,14 +196,14 @@ function userLevelTble() {
             });
             $('.userLevelTble tbody').html('').append(tableData);
 
-            $('.deleteUserLevel').click(function() {
+            $('.deleteUserLevel').click(function () {
                 var userLevelId = $(this).val();
-                confirm("Delete System User", "Are You Sure Want To Delete This User Level", "No", "Yes", function() {
+                confirm("Delete System User", "Are You Sure Want To Delete This User Level", "No", "Yes", function () {
                     deleteUserLevel(userLevelId);
                 });
             });
 
-            $('.selectULevel').click(function() {
+            $('.selectULevel').click(function () {
                 $('#savesection').addClass("hidden");
                 $('#updateSection').removeClass("hidden");
                 var userLevelId = $(this).val();
@@ -203,12 +215,12 @@ function userLevelTble() {
 //sanjeewa
 function userPrivillegeTble(usrLvl) {
     var tableData = '';
-    $.post("views/userManegmentView.php", {action: "userPrivilTbl", usrLvl: usrLvl}, function(e) {
+    $.post("views/userManegmentView.php", {action: "userPrivilTbl", usrLvl: usrLvl}, function (e) {
         if (e === undefined || e.length === 0 || e === null) {
             tableData += '<tr><th colspan="4" class="alert alert-warning text-center"> -- No Data Found -- </th></tr>';
             $('.userPrivillegeTble tbody').html('').append(tableData);
         } else {
-            $.each(e, function(index, qData) {
+            $.each(e, function (index, qData) {
                 index++;
                 if (qData.usrLvlPrvSeq === '20') {
                 } else {
@@ -223,9 +235,9 @@ function userPrivillegeTble(usrLvl) {
             $('.userPrivillegeTble tbody').html('').append(tableData);
 
 
-            $('.deleteUserPrivi').click(function() {
+            $('.deleteUserPrivi').click(function () {
                 var selUserLevel = $(this).val();
-                confirm("Delete program", "Are You Sure Want To Delete This User Level", "No", "Yes", function() {
+                confirm("Delete program", "Are You Sure Want To Delete This User Level", "No", "Yes", function () {
                     deletePriviLevel(selUserLevel);
                 });
             });
@@ -234,8 +246,8 @@ function userPrivillegeTble(usrLvl) {
 }
 
 function deleteUserLevel(data) {
-    $.post("views/userManegmentView.php", {action: "deleteUserLevel", userLevelId: data}, function(e) {
-        alertifyMsgDisplay(e, 1000, function() {
+    $.post("views/userManegmentView.php", {action: "deleteUserLevel", userLevelId: data}, function (e) {
+        alertifyMsgDisplay(e, 1000, function () {
             userLevelTble();
             get_userlecelCombo();
         });
@@ -244,16 +256,16 @@ function deleteUserLevel(data) {
 
 //sanjeewa
 function deletePriviLevel(data) {
-    $.post("views/userManegmentView.php", {action: "deletePriviLevel", selUserLevel: data}, function(e) {
-        alertifyMsgDisplay(e, 1000, function() {
+    $.post("views/userManegmentView.php", {action: "deletePriviLevel", selUserLevel: data}, function (e) {
+        alertifyMsgDisplay(e, 1000, function () {
             userPrivillegeTble($('.UserLevelPrivillage').val());
         });
     }, "json");
 }
 
 function selectDataToUp(data) {
-    $.post("views/userManegmentView.php", {action: "selectUlevel", userLevelId: data}, function(e) {
-        $.each(e, function(index, qData) {
+    $.post("views/userManegmentView.php", {action: "selectUlevel", userLevelId: data}, function (e) {
+        $.each(e, function (index, qData) {
             $('#userLevel').val(qData.lvName);
             $('#hiddnField').val(qData.lvID);
         });
@@ -263,8 +275,8 @@ function selectDataToUp(data) {
 function updateUserlevel() {
     var newUserLevel = $('#userLevel').val();
     var hiddnField = $('#hiddnField').val();
-    $.post("views/userManegmentView.php", {action: "updateUlevel", newUserLevel: newUserLevel, hiddnField: hiddnField}, function(e) {
-        alertifyMsgDisplay(e, 1000, function() {
+    $.post("views/userManegmentView.php", {action: "updateUlevel", newUserLevel: newUserLevel, hiddnField: hiddnField}, function (e) {
+        alertifyMsgDisplay(e, 1000, function () {
             userLevelTble();
             get_userlecelCombo();
         });
@@ -274,13 +286,13 @@ function updateUserlevel() {
 
 function get_userlecelCombo(selected, callBack) {
     var comboData = '';
-    $.post("views/userManegmentView.php", {action: 'loadUserLevelCombo'}, function(e) {
+    $.post("views/userManegmentView.php", {action: 'loadUserLevelCombo'}, function (e) {
         if (e === undefined || e.length === 0 || e === null) {
             comboData += '<option value="0"> -- No Data Found -- </option>';
             $('.selUserLevel').html('').append(comboData);
             chosenRefresh();
         } else {
-            $.each(e, function(index, qData) {
+            $.each(e, function (index, qData) {
                 if (selected !== undefined || e !== null || e.length !== 0) {
                     if (parseInt(selected) === parseInt(qData.lvID)) {
                         comboData += '<option value="' + qData.lvID + '" selected>' + qData.lvName + '</option>';
@@ -306,13 +318,13 @@ function get_userlecelCombo(selected, callBack) {
 
 function selUserPrivilege(selected, callBack) {
     var comboData = '';
-    $.post("views/userManegmentView.php", {action: 'loadPrivillegeCombo'}, function(e) {
+    $.post("views/userManegmentView.php", {action: 'loadPrivillegeCombo'}, function (e) {
         if (e === undefined || e.length === 0 || e === null) {
             comboData += '<option value="0"> -- No Data Found -- </option>';
             $('.selUserPrivilege').html('').append(comboData);
             chosenRefresh();
         } else {
-            $.each(e, function(index, qData) {
+            $.each(e, function (index, qData) {
                 if (selected !== undefined || e !== null || e.length !== 0) {
                     if (parseInt(selected) === parseInt(qData.prvCode)) {
                         comboData += '<option value="' + qData.prvCode + '" selected>' + qData.usrPrvMnuName + '</option>';
@@ -340,9 +352,9 @@ function clearAdTexBox() {
     $('#password').val('');
     $('#conPassword').val('');
     $('#selUserLevel').val('');
-    var cur_date=new Date();
-    var month=parseInt(cur_date.getMonth())+1;
-    $('#date').val(cur_date.getFullYear()+'-'+month+'-'+cur_date.getDate());
+    var cur_date = new Date();
+    var month = parseInt(cur_date.getMonth()) + 1;
+    $('#date').val(cur_date.getFullYear() + '-' + month + '-' + cur_date.getDate());
     $('#empNo').val('');
     $('#nic').val('');
     $('#fName').val('');
@@ -370,8 +382,8 @@ function saveAdminUser() {
     var home = $('#home').val();
     var eMail = $('#eMail').val();
     var userStatus = $('#userStatus').val();
-    $.post("views/userManegmentView.php", {action: 'addNewAdminUser', branchID: branchID, address: address, username: username, password: password, selUserLevel: selUserLevel, date: date, empNo: empNo, nic: nic, fName: fName, lName: lName, mobile: mobile, work: work, home: home, eMail: eMail, userStatus: userStatus}, function(e) {
-        alertifyMsgDisplay(e, 1000, function() {
+    $.post("views/userManegmentView.php", {action: 'addNewAdminUser', branchID: branchID, address: address, username: username, password: password, selUserLevel: selUserLevel, date: date, empNo: empNo, nic: nic, fName: fName, lName: lName, mobile: mobile, work: work, home: home, eMail: eMail, userStatus: userStatus}, function (e) {
+        alertifyMsgDisplay(e, 1000, function () {
             adminUserTbl();
             clearAdTexBox();
             get_usernameCombo();
@@ -380,7 +392,7 @@ function saveAdminUser() {
 }
 
 function checkUsername(data) {
-    $.post("views/userManegmentView.php", {action: 'checkUname', typeUname: data}, function(e) {
+    $.post("views/userManegmentView.php", {action: 'checkUname', typeUname: data}, function (e) {
         if (e > 0) {
             $('#unameMsg').html("Username Currently Exist");
             $('#useerAdsavesection').addClass("hidden");
@@ -393,12 +405,12 @@ function checkUsername(data) {
 
 function adminUserTbl() {
     var tableData = '';
-    $.post("views/userManegmentView.php", {action: "adminUserTbl"}, function(e) {
+    $.post("views/userManegmentView.php", {action: "adminUserTbl"}, function (e) {
         if (e === undefined || e.length === 0 || e === null) {
             tableData += '<tr><th colspan="6" class="alert alert-warning text-center"> -- No Data Found -- </th></tr>';
             $('.adminUsersTbl tbody').html('').append(tableData);
         } else {
-            $.each(e, function(index, qData) {
+            $.each(e, function (index, qData) {
                 index++;
                 if (qData.usrLvlPrvSeq === '20') {
                 } else {
@@ -414,16 +426,16 @@ function adminUserTbl() {
             });
             $('.adminUsersTbl tbody').html('').append(tableData);
 
-            $('.selectSystemUser').click(function() {
+            $('.selectSystemUser').click(function () {
                 $('#useerAdsavesection').addClass("hidden");
                 $('#userAdupdateSection').removeClass("hidden");
                 var adminUserId = $(this).val();
                 selectadminUserDataToUp(adminUserId);
             });
 
-            $('.deletesystemUser').click(function() {
+            $('.deletesystemUser').click(function () {
                 var userLevelId = $(this).val();
-                confirm("Delete program", "Are You Sure Want To Delete This User Level", "No", "Yes", function() {
+                confirm("Delete program", "Are You Sure Want To Delete This User Level", "No", "Yes", function () {
                     deleteSystemUser(userLevelId);
                 });
             });
@@ -432,16 +444,16 @@ function adminUserTbl() {
 }
 
 function deleteSystemUser(data) {
-    $.post("views/userManegmentView.php", {action: 'deleteUser', userId: data}, function(e) {
-        alertifyMsgDisplay(e, 1000, function() {
+    $.post("views/userManegmentView.php", {action: 'deleteUser', userId: data}, function (e) {
+        alertifyMsgDisplay(e, 1000, function () {
             adminUserTbl();
         });
     }, "json");
 }
 
 function selectadminUserDataToUp(data) {
-    $.post("views/userManegmentView.php", {action: 'getUserData', userId: data}, function(e) {
-        $.each(e, function(index, qData) {
+    $.post("views/userManegmentView.php", {action: 'getUserData', userId: data}, function (e) {
+        $.each(e, function (index, qData) {
             $('#hiddenUserId').val(qData.usrID);
             $('#address').val(qData.usrAddress);
             get_userlecelCombo(qData.usrLevel);
@@ -473,8 +485,8 @@ function updateSystemUserTble() {
     var eMail = $('#eMail').val();
     var userStatus = $('#userStatus').val();
     var hiddenUserId = $('#hiddenUserId').val();
-    $.post("views/userManegmentView.php", {action: 'updateSystemUserData', hiddenUserId: hiddenUserId, address: address, selUserLevel: selUserLevel, date: date, empNo: empNo, nic: nic, fName: fName, lName: lName, mobile: mobile, work: work, home: home, eMail: eMail, userStatus: userStatus}, function(e) {
-        alertifyMsgDisplay(e, 1000, function() {
+    $.post("views/userManegmentView.php", {action: 'updateSystemUserData', hiddenUserId: hiddenUserId, address: address, selUserLevel: selUserLevel, date: date, empNo: empNo, nic: nic, fName: fName, lName: lName, mobile: mobile, work: work, home: home, eMail: eMail, userStatus: userStatus}, function (e) {
+        alertifyMsgDisplay(e, 1000, function () {
             userLevelTble();
             clearAdTexBox();
         });
@@ -482,13 +494,13 @@ function updateSystemUserTble() {
 }
 function get_usernameCombo(selected, callBack) {
     var comboData = '';
-    $.post("views/userManegmentView.php", {action: 'loadUsernameCombo'}, function(e) {
+    $.post("views/userManegmentView.php", {action: 'loadUsernameCombo'}, function (e) {
         if (e === undefined || e.length === 0 || e === null) {
             comboData += '<option value="0"> -- No Data Found -- </option>';
             $('.selUsername').html('').append(comboData);
             chosenRefresh();
         } else {
-            $.each(e, function(index, qData) {
+            $.each(e, function (index, qData) {
                 if (selected !== undefined || e !== null || e.length !== 0) {
                     if (parseInt(selected) === parseInt(qData.usrID)) {
                         comboData += '<option value="' + qData.usrID + '" selected>' + qData.usrName + '</option>';
@@ -515,12 +527,12 @@ function load_filtered_privileges() {
     var available = $('#available_privilegs');
 
 
-    $.post("views/userManegmentView.php", {action: 'loadfilter_left_user', sel_u: sel_u}, function(d) {
+    $.post("views/userManegmentView.php", {action: 'loadfilter_left_user', sel_u: sel_u}, function (d) {
         if (d === undefined || d.length === 0 || d === null) {
             available.html('<option disabled class="not_selectable">No privileges.</option>');
         } else {
             available.empty();
-            $.each(d, function(index, prvdata) {
+            $.each(d, function (index, prvdata) {
                 available.append('<option value="' + prvdata.prvCode + '" data-prvcode="' + prvdata.prvCode + '" data-prvname="' + prvdata.prvName + '">' + prvdata.prvCode + ' - ' + prvdata.prvName + '</option>');
             });
         }
@@ -531,12 +543,12 @@ function loadUserPrivileges() {
     var sel_u = $('#selUsername').val();
     var available = $('#available_privilegs');
     var assigned = $('#assigned_privileges');
-    $.post("views/userManegmentView.php", {action: 'rightuser_privileges', sel_u: sel_u}, function(d) {
+    $.post("views/userManegmentView.php", {action: 'rightuser_privileges', sel_u: sel_u}, function (d) {
         if (d === undefined || d.length === 0 || d === null) {
             assigned.html('<option disabled class="not_selectable">No privileges assigned yet.</option>');
         } else {
             $('#assigned_privileges').empty();
-            $.each(d, function(index, prvdata) {
+            $.each(d, function (index, prvdata) {
                 assigned.append('<option value="' + prvdata.usrPrvCode + '" data-prvcode="' + prvdata.usrPrvCode + '" data-prvname="' + prvdata.prvName + '">' + prvdata.usrPrvCode + ' - ' + prvdata.prvName + '</option>');
             });
         }
@@ -557,10 +569,10 @@ function updatesystemuser() {
     var eMail = $('#eMail').val();
     var userStatus = $('#userStatus').val();
     var hiddenUserId = $('#hiddenUserId').val();
-    $.post("views/userManegmentView.php", {action: "systemuser", selUserLevel: selUserLevel, date: date, empNo: empNo, nic: nic, fName: fName, lName: lName, address: address, mobile: mobile, work: work, home: home, eMail: eMail, userStatus: userStatus, hiddenUserId: hiddenUserId}, function(e) {
-        alertifyMsgDisplay(e, 1000, function() {
+    $.post("views/userManegmentView.php", {action: "systemuser", selUserLevel: selUserLevel, date: date, empNo: empNo, nic: nic, fName: fName, lName: lName, address: address, mobile: mobile, work: work, home: home, eMail: eMail, userStatus: userStatus, hiddenUserId: hiddenUserId}, function (e) {
+        alertifyMsgDisplay(e, 1000, function () {
             adminUserTbl();
-           updatesystemuser_clear();
+            updatesystemuser_clear();
         });
     }, "json");
 }

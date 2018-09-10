@@ -1,7 +1,7 @@
 <?php
 
 // @@  Developed By Ashan Rajapaksha  2018   Uses PHP 7.0; 
-$baseURL = 'http://localhost/imagebank';
+$baseURL = 'http://localhost/watch/back';
 $db_HOST = 'localhost';
 $db_USER = 'root';
 $db_PASS = '';
