@@ -19,7 +19,10 @@ if (!isset($_SESSION['user_id'])) {
     <body>
         <div class="main-wrapper">
             <div class="app" id="app">
-                <?php //require 'include/headerbar.php'; ?>
+                <header class="header">
+                    <?php require_once './include/mobile_menu.php'; ?>
+                </header>
+          
                 <?php require 'include/sidebar.php'; ?>
                 <div class="sidebar-overlay" id="sidebar-overlay"></div>
                 <div class="sidebar-mobile-menu-handle" id="sidebar-mobile-menu-handle"></div>

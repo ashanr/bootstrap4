@@ -25,9 +25,7 @@ if (!isset($_SESSION['user_id'])) {
                 <!--                <div class="sidebar-overlay" id="sidebar-overlay"></div>-->
                 <!--                <div class="sidebar-mobile-menu-handle" id="sidebar-mobile-menu-handle"></div>
                                 <div class="mobile-menu-handle"></div>-->
-
                 <!--CONTENT-->
-
                 <article class="content forms-page">
                     <div class="title-block">
                         <h3 class="title"> User Management </h3>
@@ -40,7 +38,7 @@ if (!isset($_SESSION['user_id'])) {
                                     <div class="title-block">
                                         <a class="" data-toggle="modal" data-target=".addNewUser">
                                             <div class="thumbnail btn-dashboard" style="border-radius:5px; padding: 10px;">
-                                                <img src="img/dashbord/systemSettings.png">
+                                                 <img src="img/dashboard/user.png" style="width:128px;height:128px;">
                                                 <div class="caption text-center">
                                                     <h3>Add New User</h3>
                                                     <p></p>
@@ -48,7 +46,6 @@ if (!isset($_SESSION['user_id'])) {
                                             </div>
                                         </a> 
                                     </div>
-
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -56,7 +53,7 @@ if (!isset($_SESSION['user_id'])) {
                                     <div class="title-block">
                                         <a class="hidden" data-toggle="modal" data-target=".addUserLevelPrivillages">
                                             <div class="thumbnail btn-dashboard" style="border-radius:5px; padding: 10px;">
-                                                <img src="img/dashbord/systemSettings.png">
+                                                <img src="img/dashboard/newuser.png" style="width:128px;height:128px;">
                                                 <div class="caption text-center">
                                                     <h3>Set User Level Privileges</h3>
                                                     <p></p>
@@ -64,7 +61,6 @@ if (!isset($_SESSION['user_id'])) {
                                             </div>
                                         </a> 
                                     </div>
-
                                 </div>
                             </div>
 
@@ -73,7 +69,7 @@ if (!isset($_SESSION['user_id'])) {
                                     <div class="title-block">
                                         <a class="" data-toggle="modal" data-target=".addUserPrivillages">
                                             <div class="thumbnail btn-dashboard" style="border-radius:5px; padding: 10px;">
-                                                <img src="img/dashbord/systemSettings.png">
+                                                <img src="img/dashboard/userprev.png" style="width:128px;height:128px;">
                                                 <div class="caption text-center">
                                                     <h3>Set User Privileges</h3>
                                                     <p></p>
@@ -81,10 +77,8 @@ if (!isset($_SESSION['user_id'])) {
                                             </div>
                                         </a> 
                                     </div>
-
                                 </div>
                             </div>
-
                         </div>
                     </section>
                </article>
