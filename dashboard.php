@@ -1,10 +1,8 @@
 <?php
-error_reporting(E_ALL);
+error_reporting(E_ALL); // Enabling Error Reporting
 ini_set('display_errors', 1);
-
-
-require_once './config/dbc.php';
-require_once './class/systemSetting.php';
+require_once './config/dbc.php'; // Database Configuration File
+require_once './class/systemSetting.php'; // Database Query Settings File
 $system = new setting();
 session_start();
 if (!isset($_SESSION['user_id'])) {

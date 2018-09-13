@@ -83,10 +83,11 @@
                                 WHERE
                                 in_usrprvlg.usrID = '{$_SESSION['user_id']}'
                                 AND in_sysprvlg.usrPrnt = '{$aa['usrPrvCode']}'";
-                        MainConfig::connectDB();
-                        $link = MainConfig::conDB();
-                        $getL = mysqli_query($link, $quw)or die(mysqli_error());
-                        MainConfig::closeDB();
+                                
+                            MainConfig::connectDB();
+                            $link = MainConfig::conDB();
+                            $getL = mysqli_query($link, $quw)or die(mysqli_error());
+                            MainConfig::closeDB();
                         if (!empty($getL)) {
                             while ($row = mysqli_fetch_assoc($getL)) {
                                 $data1[] = $row;
@@ -106,12 +107,14 @@
                 }
                 ?>
 
-
-
-
             </ul>
         </nav>
     </div>
+    
+    <footer class="sidebar-footer">
+        
+    </footer>
+    <!--
     <footer class="sidebar-footer">
         <ul class="sidebar-menu metismenu" id="customize-menu">
             <li>
@@ -179,7 +182,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="customize-item">
+<!--                        <div class="customize-item">
                             <ul class="customize-colors">
                                 <li>
                                     <span class="color-item color-red" data-theme="red"></span>
@@ -203,9 +206,11 @@
                         </div>
                     </li>
                 </ul>
-                <a href="">
+             <a href="">
                     <i class="fa fa-cog"></i> Customize </a>
             </li>
         </ul>
     </footer>
+    
+    -->
 </aside>
