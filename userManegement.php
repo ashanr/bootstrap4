@@ -21,17 +21,18 @@ if (!isset($_SESSION['user_id'])) {
             <div class="app" id="app">
                 <?php //require 'include/headerbar.php'; ?>
                 <?php require 'include/sidebar.php'; ?>
-
-                <!--                <div class="sidebar-overlay" id="sidebar-overlay"></div>-->
-                <!--                <div class="sidebar-mobile-menu-handle" id="sidebar-mobile-menu-handle"></div>
-                                <div class="mobile-menu-handle"></div>-->
+                <header class="header">
+                    <?php require_once './include/mobile_menu.php'; ?>
+                </header>
+          
                 <!--CONTENT-->
                 <article class="content forms-page">
                     <div class="title-block">
                         <h3 class="title"> User Management </h3>
                         <p class="title-description"> Manage System Users </p>
                     </div>
-                                    <section class="section">
+                    
+                      <section class="section">
                         <div class="row sameheight-container">
                             <div class="col-md-4">
                                 <div class="card card-block sameheight-item" style="height: 709px;">
@@ -64,7 +65,7 @@ if (!isset($_SESSION['user_id'])) {
                                 </div>
                             </div>
 
-                            <div class="col-md-4">
+                           
                                 <div class="card card-block sameheight-item" style="height: 709px;">
                                     <div class="title-block">
                                         <a class="" data-toggle="modal" data-target=".addUserPrivillages">
@@ -79,14 +80,12 @@ if (!isset($_SESSION['user_id'])) {
                                     </div>
                                 </div>
                             </div>
+                            
                         </div>
                     </section>
                </article>
-
-
                 <!--CONTENT END-->
-
-
+                
                 <!--User Level Add-->
                 <div class="modal fade addUserLevel" style="width: 100%;" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-lg">

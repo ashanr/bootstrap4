@@ -85,7 +85,6 @@
                 <a class="dropdown-item" href="#">
                     <i class="fa fa-gear icon"></i> Settings </a>
                 <div class="dropdown-divider"></div>
-
             </div>
         </li>
     </ul>
