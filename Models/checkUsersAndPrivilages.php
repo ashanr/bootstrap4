@@ -28,7 +28,7 @@ in_usr.usrName = '{$user}' LIMIT 1";
         $userAvailability = $system->getCountByQuery($userQuery);
         if ($userAvailability > 0) {
             $userDetails = $system->prepareSelectQuery($userQuery);
-            $encriptedPass = sha1('MDCC' . $pass . 'badboyes');
+            $encriptedPass = sha1('Cyber' . $pass . 'code');
             foreach ($userDetails as $ud) {
                 if ($ud['usrPwd'] == $encriptedPass) {
                     //Set Cookie if select remember btn
