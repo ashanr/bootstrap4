@@ -53,7 +53,7 @@ in_usr.usrName = '{$user}' LIMIT 1";
             echo json_encode(array(array("msgType" => 2, "msg" => "User was not available in database,plase check your username")));
         }
     } else {
-        echo json_encode(array(array("msgType" => 3, "msg" => "Please enter username or password")));
+        echo json_encode(array(array("msgType" => 3, "msg" => "Please check username and password")));
     }
 }
 
