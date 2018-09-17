@@ -153,7 +153,7 @@ class setting {
     function prepareCommandQueryForAlertify($query, $successMsg, $errorMsg) {
         MainConfig::connectDB();
         $link = MainConfig::conDB();
-        $save = mysqli_query($link, $query)or die(mysql_error());
+        $save = mysqli_query($link, $query)or die(mysqli_error($link));
         MainConfig::closeDB();
         if (isset($save) && $save) {
             echo json_encode(array(array("msgType" => 1, "msg" => $successMsg)));

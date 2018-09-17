@@ -14,22 +14,8 @@
             <ul class="sidebar-menu metismenu" id="sidebar-menu">
 
                 <li class="active">
-                    <a href="index.html">
+                    <a href="dashboard.php">
                         <i class="fa fa-home"></i> Dashboard </a>
-                </li>
-                <li>
-                    <a href="">
-                        <i class="fa fa-th-large"></i> Items Manager
-                        <i class="fa arrow"></i>
-                    </a>
-                    <ul class="sidebar-nav">
-                        <li>
-                            <a href="items-list.html"> Items List </a>
-                        </li>
-                        <li>
-                            <a href="item-editor.html"> Item Editor </a>
-                        </li>
-                    </ul>
                 </li>
                 <li>
                     <a href="backups.php">
@@ -64,7 +50,6 @@
                     while ($row = mysqli_fetch_assoc($getLogeduser)) {
                         $data[] = $row;
                     }
-
                     foreach ($data AS $aa) {
                         echo '<li class="">
                              <a href="' . $aa['usrPrvMnuPath'] . '">
@@ -83,16 +68,17 @@
                                 WHERE
                                 in_usrprvlg.usrID = '{$_SESSION['user_id']}'
                                 AND in_sysprvlg.usrPrnt = '{$aa['usrPrvCode']}'";
-                                
-                            MainConfig::connectDB();
-                            $link = MainConfig::conDB();
-                            $getL = mysqli_query($link, $quw)or die(mysqli_error());
-                            MainConfig::closeDB();
+
+                        MainConfig::connectDB();
+                        $link = MainConfig::conDB();
+                        $getL = mysqli_query($link, $quw)or die(mysqli_error());
+
+                        $data1 = array();
+                        MainConfig::closeDB();
                         if (!empty($getL)) {
                             while ($row = mysqli_fetch_assoc($getL)) {
                                 $data1[] = $row;
                             }
-
                             echo '<ul class="sidebar-nav">';
                             foreach ($data1 AS $bb) {
                                 if ($aa['usrPrvCode'] == $bb['usrPrnt']) {
@@ -110,9 +96,9 @@
             </ul>
         </nav>
     </div>
-    
+
     <footer class="sidebar-footer">
-        
+
     </footer>
     <!--
     <footer class="sidebar-footer">
@@ -182,35 +168,35 @@
                                 </div>
                             </div>
                         </div>
-<!--                        <div class="customize-item">
-                            <ul class="customize-colors">
-                                <li>
-                                    <span class="color-item color-red" data-theme="red"></span>
-                                </li>
-                                <li>
-                                    <span class="color-item color-orange" data-theme="orange"></span>
-                                </li>
-                                <li>
-                                    <span class="color-item color-green active" data-theme=""></span>
-                                </li>
-                                <li>
-                                    <span class="color-item color-seagreen" data-theme="seagreen"></span>
-                                </li>
-                                <li>
-                                    <span class="color-item color-blue" data-theme="blue"></span>
-                                </li>
-                                <li>
-                                    <span class="color-item color-purple" data-theme="purple"></span>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                </ul>
-             <a href="">
-                    <i class="fa fa-cog"></i> Customize </a>
-            </li>
-        </ul>
-    </footer>
-    
+    <!--                        <div class="customize-item">
+                                <ul class="customize-colors">
+                                    <li>
+                                        <span class="color-item color-red" data-theme="red"></span>
+                                    </li>
+                                    <li>
+                                        <span class="color-item color-orange" data-theme="orange"></span>
+                                    </li>
+                                    <li>
+                                        <span class="color-item color-green active" data-theme=""></span>
+                                    </li>
+                                    <li>
+                                        <span class="color-item color-seagreen" data-theme="seagreen"></span>
+                                    </li>
+                                    <li>
+                                        <span class="color-item color-blue" data-theme="blue"></span>
+                                    </li>
+                                    <li>
+                                        <span class="color-item color-purple" data-theme="purple"></span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                 <a href="">
+                        <i class="fa fa-cog"></i> Customize </a>
+                </li>
+            </ul>
+        </footer>
+        
     -->
 </aside>
