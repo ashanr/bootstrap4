@@ -6,11 +6,9 @@
 
     <div class="footer-block author">
         <ul>
-            <li>  Cyber Code IT Solutions
-                
-            </li>
+            <li>  Cyber Code IT Solutions </li>
             <li>
-               <button class="btn btn-success dropdown-item" id="logout">Logout</button>
+               <button class="btn btn-oval btn-danger-outline dropdown-item" id="logout">Logout</button>
             </li>
         </ul>
     </div>

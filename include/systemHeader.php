@@ -6,10 +6,8 @@
 <link type="text/css" href="css/alertify/alertify.rtl.css" rel="stylesheet">
 <link type="text/css" href="css/alertify/alertify.rtl.min.css" rel="stylesheet">
 
-
 <!--BOOTSTRAP-->
 <link type="text/css" href="css/bootstrap.css.map" rel="stylesheet">
-
 
 <!--Datepicker--> 
 <link href="./css/custom/datepicker.css" rel="stylesheet"/>

@@ -17,17 +17,6 @@
                     <a href="dashboard.php">
                         <i class="fa fa-home"></i> Dashboard </a>
                 </li>
-                <li>
-                    <a href="backups.php">
-                        <i class="fa fa-desktop"></i> Backups
-                        <i class="fa arrow"></i>
-                    </a>
-
-                </li>
-                <li>
-                    <a href="https://github.com/modularcode/modular-admin-html">
-                        <i class="fa fa-github-alt"></i> Theme Docs </a>
-                </li>
 
                 <?php
                 $data = array();
@@ -43,7 +32,7 @@
                           WHERE in_usrprvlg.usrID = '{$_SESSION['user_id']}' AND in_sysprvlg.usrPrnt = 0";
                 MainConfig::connectDB();
                 $link = MainConfig::conDB();
-                $getLogeduser = mysqli_query($link, $quary)or die(mysqli_error());
+                $getLogeduser = mysqli_query($link, $quary)or die(mysqli_error($link));
                 MainConfig::closeDB();
 
                 if (!empty($getLogeduser)) {
@@ -71,7 +60,7 @@
 
                         MainConfig::connectDB();
                         $link = MainConfig::conDB();
-                        $getL = mysqli_query($link, $quw)or die(mysqli_error());
+                        $getL = mysqli_query($link, $quw)or die(mysqli_error($link));
 
                         $data1 = array();
                         MainConfig::closeDB();
@@ -92,6 +81,11 @@
                     }
                 }
                 ?>
+
+                <li>
+                    <a href="https://github.com/modularcode/modular-admin-html">
+                        <i class="fa fa-github-alt"></i> Theme Docs </a>
+                </li>
 
             </ul>
         </nav>

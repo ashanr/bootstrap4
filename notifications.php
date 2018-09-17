@@ -54,13 +54,13 @@ if (!isset($_SESSION['user_id'])) {
                                     </div>
                                     <div class="form-group">
                                         <label for="">Title</label>
+                                        <input type="text" class="form-control d-none" id="id" >
                                         <input type="text" class="form-control" id="title" placeholder="Title">
                                     </div>
                                     <div class="form-group">
                                         <label for="">Message</label>
                                         <textarea  class="form-control"style="resize: none" id="message" rows="4" placeholder="Notification Message Here"></textarea>
                                     </div>
-
                                 </div>
                             </div>
 
@@ -83,8 +83,8 @@ if (!isset($_SESSION['user_id'])) {
                                     </div>
                                     <div class="form-group">
                                         <button id="btnSave" type="button" class="btn btn-primary btnSave">Save Notification</button>
-                                        <!--                                        <button id="btnUpdate" type="button" class="btn btn-warning btnUpdate">Update</button>
-                                                                                <button id="btnDelete" type="button" class="btn btn-danger btnDelete">Delete</button>-->
+                                        <button id="btnUpdate" type="button" class="btn btn-warning btnUpdate">Update</button>
+                                        <button id="btnReset" type="button" class="btn btn-secondary btnReset">Reset</button>
                                     </div>
                                 </div>
                             </div>
@@ -93,6 +93,60 @@ if (!isset($_SESSION['user_id'])) {
 
                     </section>
                     <section class="section">
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-block">
+                                        <div class="title-search-block">
+                                            <div class="title-block">
+                                                <div class="row">
+
+                                                    <div class="col-md-6">
+                                                        <h3 class="title"> Notifications Table </h3>
+                                                    </div>
+
+                                                    <div class="col-md-6">
+                                                        <form class="form-inline">
+                                                            <div class="input-group">
+                                                                <input type="text" class="form-control boxed rounded-s" placeholder="Search for...">
+                                                                <span class="input-group-btn">
+                                                                    <button class="btn btn-secondary rounded-s serch_table" type="button">
+                                                                        <i class="fa fa-search"></i>
+                                                                    </button>
+                                                                </span>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <section class="example">
+                                            <div class="table-flip-scroll">
+                                                <table class="table table-striped table-bordered sm table-hover flip-content table_notification">
+                                                    <thead class="flip-header">
+                                                        <tr>
+                                                            <th>#</th>
+                                                            <th>Title</th>
+                                                            <th>Message</th>
+                                                            <th>Publish Date</th>
+                                                            <th>Expire Date</th>
+                                                            <th>Added Date</th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </section>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
 
                     </section>
                     <section class="section map-tasks">
@@ -103,6 +157,7 @@ if (!isset($_SESSION['user_id'])) {
                 <?PHP require 'include/Footer.php'; ?>
                 <?PHP require 'include/systemFooter.php'; ?>
                 <script type="text/javascript" src="./controllers/controller_notification.js"></script>
+                <script type="text/javascript" src="./table_controllers/table_notification.js"></script>
                 <!--NOTIFICATION PAGE CONTROLLER-->
 
             </div>
@@ -114,7 +169,11 @@ if (!isset($_SESSION['user_id'])) {
                 $(document).ready(function () {
                     //     show_save();
                     $('#btnUpdate').addClass('hidden');
+                    load_notification_table();
+                    hide_update_btn();
                 });
+                hide_update_btn();
+                load_notification_table();
 
                 $('#logout').click(function ()
                 {
@@ -126,12 +185,15 @@ if (!isset($_SESSION['user_id'])) {
                 $('#btnUpdate').on('click', function () {
                     update_notification();
                 });
-                $('#btnDelete').on('click', function () {
-                    // show_save();
-
-                    $('#message').addClass('readonly');
+                $('#btnReset').on('click', function () {
+                    reset();
 
                 });
+
+                $('.search_table').click(function () {
+                    load_notification_table();
+                });
+
             });
 
 
@@ -145,7 +207,7 @@ if (!isset($_SESSION['user_id'])) {
                 daysOfWeekHighlighted: "6,0",
                 autoclose: true,
                 todayHighlight: true,
-                
+
             });
             $('#datepicker').datepicker("setDate", new Date());
             $('#pub_date').datepicker();
