@@ -1,15 +1,12 @@
 $(function () {
-
     $('#logSystem').click(function () {
+
         var userName = $('#userName').val();
         var password = $('#password').val();
-        login(userName, password);
+        userlogin(userName, password);
     });
 
-
-
     $(document).on('keypress', function (e) {
-        // console.log("hello");
         inputKeyUp(e)
     });
 
@@ -25,10 +22,50 @@ function inputKeyUp(e) {
 }
 
 function logout() {
-
     logoutconfirm('Logout', 'Are you sure want to log out the system', 'Cancel', 'Yes', function () {
     });
 }
+
+function  userlogin(userName, password, remember) {
+
+    $.post("Models/checkUsersAndPrivilages.php", {logSystem: 'login', userName: userName, password: password, remember: remember}, function (e) {
+
+        if (e === undefined || e.length === 0 || e === null) {
+            alertify.error("System Error Occured", 2000);
+
+        } else {
+
+            $.each(e, function (index, msgData) {
+
+                //   console.log(msgData);
+                if (msgData.msgType === 0) {
+                    var msg1 = alertify.success(msgData.msg);
+                    alertify.set('notifier', 'position', 'bottom-right');
+                    //  msg1.delay(3).setContent(msgData.msg);
+                    timelyRedirect("dashboard.php", 500);
+                    alert(msgData.msg);
+                } else if (msgData.msgType === 1) {
+                    var msg = alertify.error(msgData.msg);
+                    alertify.set('notifier', 'position', 'bottom-right');
+                    msg.delay(3).setContent(msgData.msg);
+                    alert(msgData.msg);
+                } else if (msgData.msgType === 2) {
+                    var msg = alertify.error(msgData.msg);
+                    alertify.set('notifier', 'position', 'bottom-right');
+                    alert(msgData.msg);
+                } else if (msgData.msgType === 3) {
+                    var msg = alertify.error(msgData.msg);
+                    alertify.set('notifier', 'position', 'bottom-right');
+                    msg.delay(3).setContent(msgData.msg);
+                    alert(msgData.msg);
+
+                }
+            });
+        }
+    }, "json");
+}
+
+
 
 function logoutconfirm(heading, question, cancelButtonTxt, okButtonTxt, callback) {
     var confirmModal = $('<div class="modal fade">' +
@@ -78,38 +115,6 @@ function checkurl() {
  * @param {type} remember
  * @returns {undefined}
  */
-function  login(userName, password, remember) {
-
-    $.post("Models/checkUsersAndPrivilages.php", {logSystem: 'login', userName: userName, password: password, remember: remember}, function (e) {
-
-        if (e === undefined || e.length === 0 || e === null) {
-            alertify.error("System Error Occured", 2000);
-        } else {
-            $.each(e, function (index, msgData) {
-                if (msgData.msgType === 0) {
-                    var msg1 = alertify.success(msgData.msg);
-                    alertify.set('notifier', 'position', 'bottom-right');
-                  //  msg1.delay(3).setContent(msgData.msg);
-                    timelyRedirect("dashboard.php", 500);
-                } else if (msgData.msgType === 1) {
-
-                    var msg = alertify.error(msgData.msg);
-                    alertify.set('notifier', 'position', 'bottom-right');
-                    msg.delay(3).setContent(msgData.msg);
-                } else if (msgData.msgType === 2) {
-
-                    var msg = alertify.error(msgData.msg);
-                    alertify.set('notifier', 'position', 'bottom-right');
-                    msg.delay(3).setContent(msgData.msg);
-                } else if (msgData.msgType === 3) {
-                    var msg = alertify.error(msgData.msg);
-                    alertify.set('notifier', 'position', 'bottom-right');
-                    msg.delay(3).setContent(msgData.msg);
-                }
-            });
-        }
-    }, "json");
-}
 
 function timelyRedirect(url, delay) {
     setTimeout(function () {
