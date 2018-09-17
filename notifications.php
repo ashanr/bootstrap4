@@ -48,7 +48,7 @@ if (!isset($_SESSION['user_id'])) {
                         <div class="row sameheight-container">
 
                             <div class="col-md-6">
-                                <div class="card card-block sameheight-item" style="height:320px;">
+                                <div class="card card-block sameheight-item" style="height:355px;">
                                     <div class="title-block">
                                         <h3 class="title " style="color:#1e7e34"> Notification Manage </h3>
                                     </div>
@@ -66,7 +66,7 @@ if (!isset($_SESSION['user_id'])) {
 
                             <div class="col-md-6">
 
-                                <div class="card card-block sameheight-item" style="height: 320px;">
+                                <div class="card card-block sameheight-item" style="height: 355px;">
                                     <div class="form-group-sm date" >
                                         <label for="">Date</label>
                                         <input type="text" class="form-control" id="datepicker" value=""> 

@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 <footer class="footer">
 
     <div class="footer-block buttons">
@@ -14,7 +14,6 @@
         </ul>
     </div>
 </footer>
-=======
 <footer id="footer-pro">
             <div class="container">
                 <div class="row">
@@ -32,4 +31,3 @@
                 </div><!-- close .row -->
             </div><!-- close .container -->
         </footer>
->>>>>>> 499c21e242b6e6390884e41383813c9b75201dd3

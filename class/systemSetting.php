@@ -116,7 +116,7 @@ class setting {
         $data = array();
         MainConfig::connectDB();
         $link = MainConfig::conDB();
-        $result = mysqli_query($link, $query) or die(mysqli_error());
+        $result = mysqli_query($link, $query) or die(mysqli_error($link));
         MainConfig::closeDB();
         while ($row = mysqli_fetch_assoc($result)) {
             $data[] = $row;
