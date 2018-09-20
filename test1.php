@@ -19,9 +19,19 @@ if (!isset($_SESSION['user_id'])) {
     <body>
         <div class="main-wrapper">
             <div class="app" id="app">
-                <?php //require 'include/headerbar.php';  ?>
+
                 <?php require 'include/sidebar.php'; ?>
                 <header class="header">
+                    <div class="header-block header-block-collapse d-lg-none d-xl-none">
+                        <button class="collapse-btn" id="sidebar-collapse-btn">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                    </div>
+
+                    <div class="header-block header-block-search " >
+                        <h2> Test Page </h2>
+                    </div>
+
                     <?php require_once './include/mobile_menu.php'; ?>
                 </header>
 

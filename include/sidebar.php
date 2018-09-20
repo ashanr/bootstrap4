@@ -33,7 +33,7 @@
                 MainConfig::connectDB();
                 $link = MainConfig::conDB();
                 $getLogeduser = mysqli_query($link, $quary)or die(mysqli_error($link));
-                MainConfig::closeDB();
+
 
                 if (!empty($getLogeduser)) {
                     while ($row = mysqli_fetch_assoc($getLogeduser)) {
@@ -41,7 +41,7 @@
                     }
                     foreach ($data AS $aa) {
                         echo '<li class="">
-                             <a href="' . $aa['usrPrvMnuPath'] . '">
+                             <a href="">
                         <i class="fa fa-home"></i>' . $aa['usrPrvMnuName'] . ' <i class="fa arrow"></i></a>   ';
 
                         $quw = "SELECT
@@ -56,14 +56,16 @@
                                 INNER JOIN in_usrprvlg ON in_usrprvlg.usrPrvCode = in_sysprvlg.prvCode
                                 WHERE
                                 in_usrprvlg.usrID = '{$_SESSION['user_id']}'
-                                AND in_sysprvlg.usrPrnt = '{$aa['usrPrvCode']}'";
+                                AND in_sysprvlg.usrPrnt = '{$aa['usrPrvCode']}'  ";
+                                
+                                
 
                         MainConfig::connectDB();
                         $link = MainConfig::conDB();
                         $getL = mysqli_query($link, $quw)or die(mysqli_error($link));
 
                         $data1 = array();
-                        MainConfig::closeDB();
+                    
                         if (!empty($getL)) {
                             while ($row = mysqli_fetch_assoc($getL)) {
                                 $data1[] = $row;
@@ -79,6 +81,8 @@
 
                         echo '</li>';
                     }
+
+                    MainConfig::closeDB();
                 }
                 ?>
 

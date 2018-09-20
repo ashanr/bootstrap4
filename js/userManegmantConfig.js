@@ -17,7 +17,7 @@ function inputKeyUp(e) {
     if (e.which === 13) {
         var userName = $('#userName').val();
         var password = $('#password').val();
-        login(userName, password);
+        userlogin(userName, password);
     }
 }
 
@@ -34,31 +34,29 @@ function  userlogin(userName, password, remember) {
             alertify.error("System Error Occured", 2000);
 
         } else {
-
             $.each(e, function (index, msgData) {
-
-                //   console.log(msgData);
                 if (msgData.msgType === 0) {
-                    var msg1 = alertify.success(msgData.msg);
-                    alertify.set('notifier', 'position', 'bottom-right');
-                    //  msg1.delay(3).setContent(msgData.msg);
+                    // var msg1 = alertify.success(msgData.msg);
+                    var msg1 = alertify.success("Login Success");
+                    //   alertify.set('notifier', 'position', 'bottom-right');
+                    msg1.delay(3).setContent(msg1);
                     timelyRedirect("dashboard.php", 500);
-                    alert(msgData.msg);
+                    //alert(msgData.msg);
                 } else if (msgData.msgType === 1) {
                     var msg = alertify.error(msgData.msg);
-                    alertify.set('notifier', 'position', 'bottom-right');
+                    //    alertify.set('notifier', 'position', 'bottom-right');
                     msg.delay(3).setContent(msgData.msg);
-                    alert(msgData.msg);
+                    //alert(msgData.msg);
                 } else if (msgData.msgType === 2) {
                     var msg = alertify.error(msgData.msg);
-                    alertify.set('notifier', 'position', 'bottom-right');
-                    alert(msgData.msg);
+                    //   alertify.set('notifier', 'position', 'bottom-right');
+                    msg.delay(3).setContent(msgData.msg);
+                    // alert(msgData.msg);
                 } else if (msgData.msgType === 3) {
                     var msg = alertify.error(msgData.msg);
-                    alertify.set('notifier', 'position', 'bottom-right');
+                    //   alertify.set('notifier', 'position', 'bottom-right');
                     msg.delay(3).setContent(msgData.msg);
-                    alert(msgData.msg);
-
+                    //alert(msgData.msg);
                 }
             });
         }
@@ -79,7 +77,7 @@ function logoutconfirm(heading, question, cancelButtonTxt, okButtonTxt, callback
             '<p>' + question + '</p>' +
             '</div>' +
             '<div class="modal-footer">' +
-            '<button type="button" class="btn btn-default" data-dismiss="modal" id="cancelButton">' + cancelButtonTxt + '</button>' +
+            '<button type="button" class="btn btn-secondary" data-dismiss="modal" id="cancelButton">' + cancelButtonTxt + '</button>' +
             '<button type="button" class="btn btn-primary" id="OkButton">' + okButtonTxt + '</button>' +
             '</div>' +
             '</div>' +
