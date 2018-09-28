@@ -5,7 +5,7 @@ $baseURL = 'http://localhost/b4admin/back';
 $db_HOST = 'localhost';
 $db_USER = 'root';
 $db_PASS = '';
-$db_NAME = 'b4system';
+$db_NAME = 'usermanage';
 
 $user_registration = 1;  // set 0 or 1
 

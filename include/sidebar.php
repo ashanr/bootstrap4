@@ -82,7 +82,7 @@
                         echo '</li>';
                     }
 
-                    MainConfig::closeDB();
+                   // MainConfig::closeDB();
                 }
                 ?>
 

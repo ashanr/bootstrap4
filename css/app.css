@@ -46,7 +46,7 @@ body {
 .app {
   position: relative;
   width: 100%;
-  padding-left: 230px;
+  padding-left: 30px;
   min-height: 100vh;
   margin: 0 auto;
   left: 0;
@@ -2141,11 +2141,12 @@ pre {
     .wyswyg .ql-container .ql-editor {
       min-height: 200px; }
 
+   /*left originally was 230px*/
 .header {
   background-color: #d7dde4;
   height: 70px;
   position: absolute;
-  left: 230px;
+  left: 0px; 
   right: 0;
   -webkit-transition: left 0.3s ease;
   transition: left 0.3s ease;
@@ -2232,9 +2233,11 @@ pre {
 .modal .modal-footer .btn {
   margin-bottom: 0; }
 
+
+/*width originally was 230px*/
 .sidebar {
   background-color: #3a4651;
-  width: 230px;
+  width: 0px; 
   padding-bottom: 60px;
   position: absolute;
   top: 0;

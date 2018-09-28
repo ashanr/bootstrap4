@@ -16,23 +16,14 @@ if (!isset($_SESSION['user_id'])) {
     <head>
         <?php require_once './include/Header.php'; ?>
         <?php require_once './include/systemHeader.php'; ?>
-
-        <style type="text/css">
-            /*            .datepicker {
-                            font-size: 0.875em;
-                        }
-                         solution 2: the original datepicker use 20px so replace with the following:
-            
-                        .datepicker td, .datepicker th {
-                            width: 1.5em;
-                            height: 1.5em;
-                        }*/
-
-        </style>
     </head>
+
+
     <body>
         <div class="main-wrapper">
             <div class="app" id="app">
+                <?php require 'include/sidebar.php'; ?>
+
                 <header class="header">
 
                     <div class="header-block header-block-collapse d-lg-none d-xl-none">
@@ -41,24 +32,19 @@ if (!isset($_SESSION['user_id'])) {
                         </button>
                     </div>
 
-                    <div class="header-block header-block-search " >
+<!--                    <div class="header-block header-block-search " >
                         <h2> User Management </h2>
-                    </div>
+                    </div>-->
 
                     <?php require_once './include/mobile_menu.php'; ?>
 
                 </header>
-                <?php require 'include/sidebar.php'; ?>
 
-                <div class="sidebar-overlay" id="sidebar-overlay"></div>
-                <div class="sidebar-mobile-menu-handle" id="sidebar-mobile-menu-handle"></div>
-                <div class="mobile-menu-handle"></div>
-                <article class="content dashboard-page">
+                <article class="content forms-page">
                     <section class="section">
+                        <div class="row sameheight-container ">
 
-                        <div class="row sameheight-container">
-
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <div class="card card-block sameheight-item" style="height:auto">
                                     <div class="title-block">
                                         <h3 class="title " style="color:#1e7e34"> Add New User </h3>
@@ -66,7 +52,7 @@ if (!isset($_SESSION['user_id'])) {
                                     <div class="form-group">
                                         <label for="">User Type</label>
                                         <select class="form-control" id="selUserLevel">
-                                            <option value="1">Admin</option>
+                                            <option value="188">Admin</option>
                                             <option value="2">Staff</option>
                                             <option value="3">Client</option>
                                         </select>
@@ -88,7 +74,40 @@ if (!isset($_SESSION['user_id'])) {
                                 </div>
                             </div>
 
-                            <div class="col-md-6">
+                            <div class="col-md-4">
+                                <div class="card card-block sameheight-item" style="height:auto">
+
+
+                                    <div class="form-group">
+                                        <label for="">Work Contact No</label>
+                                       <input type="text" class="form-control" id="work" placeholder="First Name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="">Emp No</label>
+                                       <input type="text" class="form-control" id="empNo" placeholder="First Name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="">NIC</label>
+                                       <input type="text" class="form-control" id="nic" placeholder="First Name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="">Emp No</label>
+                                        <select class="form-control" id="userStatus" >
+                                            <option value="1">Active</option>
+                                            <option value="2">Inactive</option>
+                                                                                </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="">Reg Date</label>
+                                        <input type="text" class="form-control" id="date" placeholder="Reg"> 
+                                    </div>
+
+
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
 
                                 <div class="card card-block sameheight-item" style="height:auto;">
                                     <div class="form-group">
@@ -119,8 +138,8 @@ if (!isset($_SESSION['user_id'])) {
                         </div>
 
                     </section>
-                    <section class="section">
 
+                    <section class="section">
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="card">
@@ -151,15 +170,15 @@ if (!isset($_SESSION['user_id'])) {
                                         </div>
                                         <section class="example">
                                             <div class="table-flip-scroll">
-                                                <table class="table table-striped table-bordered sm table-hover flip-content table_notification">
+                                                <table class="table table-striped table-bordered sm table-hover flip-content adminUsersTbl">
                                                     <thead class="flip-header">
                                                         <tr>
                                                             <th>#</th>
-                                                            <th>Title</th>
-                                                            <th>Message</th>
-                                                            <th>Publish Date</th>
-                                                            <th>Expire Date</th>
-                                                            <th>Added Date</th>
+                                                            <th>Username</th>
+                                                            <th>Email</th>
+                                                            <th>Status</th>
+                                                            <th>Name</th>
+
                                                             <th>Action</th>
                                                         </tr>
                                                     </thead>
@@ -173,11 +192,9 @@ if (!isset($_SESSION['user_id'])) {
                                 </div>
                             </div>
                         </div>
-
-
                     </section>
-                    <section class="section map-tasks">
 
+                    <section class="section map-tasks">
                     </section>
                 </article>
 
@@ -189,19 +206,18 @@ if (!isset($_SESSION['user_id'])) {
 
             </div>
         </div>
-
+        <script src="js/vendor.js"></script>
+        <script src="js/app.js"></script>
         <script type="text/javascript">
             $(function () {
-
                 $(document).ready(function () {
                     //     show_save();
                     $('#btnUpdate').addClass('hidden');
-                    load_notification_table();
+                    admin_user_table();
                     hide_update_btn();
                 });
                 hide_update_btn();
-                load_notification_table();
-
+                admin_user_table();
                 $('#logout').click(function ()
                 {
                     logout();
@@ -210,36 +226,19 @@ if (!isset($_SESSION['user_id'])) {
                     save_user();
                 });
                 $('#btnUpdate').on('click', function () {
-                    update_notification();
+                    update_user();
                 });
                 $('#btnReset').on('click', function () {
                     reset();
-
                 });
 
                 $('.search_table').click(function () {
-                    load_notification_table();
+                    admin_user_table();
                 });
-
             });
-
-
-
-
         </script>
 
         <script type="text/javascript">
-            $('#datepicker,#pub_date,#exp_date').datepicker({
-                weekStart: 1,
-                daysOfWeekHighlighted: "6,0",
-                autoclose: true,
-                todayHighlight: true,
-
-            });
-            $('#datepicker').datepicker("setDate", new Date());
-            $('#pub_date').datepicker();
-            $('#exp_date').datepicker();
-
 
 
             function show_update_btn() {
@@ -271,6 +270,6 @@ if (!isset($_SESSION['user_id'])) {
 
 
         </script>
-        <!--DATEPICKER--> 
+
     </body>
 </html>

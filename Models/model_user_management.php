@@ -55,17 +55,8 @@ in_usrlevel WHERE in_usrlevel.lvID = '{$_POST['userLevelId']}'");
     } else if ($_POST['action'] == 'updateUlevel') {
         $system->prepareCommandQueryForAlertify("UPDATE `in_usrlevel` SET `lvName`='{$_POST['newUserLevel']}' WHERE (`lvID`='{$_POST['hiddnField']}');", "Successfully Updated", "Sorry ..! Counld Not Be Update");
     } else if ($_POST['action'] == 'addNewAdminUser') {
-//        $getuserLevelPrivilages = $system->prepareSelectQuery("SELECT
-//        in_usrlvlpriv.usrLvl,
-//        in_usrlvlpriv.usrPrivilage
-//        FROM
-//        in_usrlvlpriv WHERE in_usrlvlpriv.usrLvl = '{$_POST['selUserLevel']}'");
-//        if ($getuserLevelPrivilages) {
-//            foreach ($getuserLevelPrivilages AS $aa) {
-//                $insertAddprivi = mysql_query("INSERT INTO `in_usrlvlpriv` (`usrLvl`, `usrPrivilage`) VALUES ('{$aa['usrLvl']}', '{$aa['usrPrivilage']}');");
-//            }
         $time = date("h:i:s a");
-        $encriptedPass = sha1('MDCC' . $_POST['password'] . 'badboyes');
+        $encriptedPass = sha1('Cyber' . $_POST['password'] . 'code');
         $system->prepareCommandQueryForAlertify("INSERT INTO `in_usr` (`usrName`, `usrFName`, `usrLName`, `usrLevel`, `usrPwd`, `usrRegDate`, `usrStatus`, `usrAddress`, `usrEmail`, `lstLgDate`, `lstLgTime`, `usrEmpNo`, `usrNIC`, `usrMobileNo`, `usrWorkTelNo`, `usrHomeTelNo`, `userBranchID`) VALUES ('{$_POST['username']}', '{$_POST['fName']}', '{$_POST['lName']}', '{$_POST['selUserLevel']}', '{$encriptedPass}', '{$_POST['date']}', '{$_POST['userStatus']}', '{$_POST['address']}', '{$_POST['eMail']}', '{$_POST['date']}', '{$time}', '{$_POST['empNo']}', '{$_POST['nic']}', '{$_POST['mobile']}', '{$_POST['work']}', '{$_POST['home']}', '{$_POST['branchID']}');", "Successfully Saved", "Sorry ..! Counld Not Be Save");
         // }
     } else if ($_POST['action'] == 'checkUname') {
@@ -81,7 +72,11 @@ in_usr.usrFName,
 in_usr.usrLName,
 in_usr.usrID,
 in_usrlevel.lvName,
-in_usrlevel.usrLvlPrvSeq
+in_usrlevel.usrLvlPrvSeq,
+in_usr.usrEmail,
+in_usr.lstLgTime,
+in_usr.usrStatus,
+in_usr.usrLevel
 FROM
 in_usr
 INNER JOIN in_usrlevel ON in_usr.usrLevel = in_usrlevel.lvID
@@ -131,7 +126,7 @@ WHERE
 in_usr.usrID = '{$_POST['sel_u']}' LIMIT 1";
         $link = MainConfig::conDB();
         $result = mysqli_query($link, $query);
-        $row = mysqli_fetch_row($link,$result);
+        $row = mysqli_fetch_row($link, $result);
 
         $system->prepareSelectQueryForJSON("SELECT
 in_sysprvlg.prvCode,
@@ -152,7 +147,8 @@ in_usrlvlpriv.usrLvl = '{$row[0]}'");
         foreach ($_POST['options'] as $v) {
             $query = "INSERT INTO `in_usrprvlg` (`usrID`, `usrPrvCode`) "
                     . "VALUES ('{$_POST['userid']}', $v)";
-            $result = mysql_query($query);
+            $link = MainConfig::conDB();
+            $result = mysqli_query($link, $query);
             if ($result) {
                 $retar[] = array(
                     "msgType" => 1,
@@ -166,45 +162,48 @@ in_usrlvlpriv.usrLvl = '{$row[0]}'");
         $system->prepareCommandQueryForAlertify("INSERT INTO `in_usrlvlpriv` (`usrLvl`, `usrPrivilage`) VALUES ('{$_POST['selUserLevel']}', '{$_POST['selUserPrivilege']}');", "Successfully Saved", "Sorry ..! Counld Not Be Save");
     } else if ($_POST['action'] == 'userPrivilTbl') {
         $system->prepareSelectQueryForJSON("SELECT
-in_usrlevel.lvName,
-in_sysprvlg.prvName,
-in_usrlvlpriv.usrLvl
-FROM
-in_usrlvlpriv
-INNER JOIN in_usrlevel ON in_usrlvlpriv.usrLvl = in_usrlevel.lvID
-INNER JOIN in_sysprvlg ON in_usrlvlpriv.usrPrivilage = in_sysprvlg.prvCode
-WHERE
-in_usrlvlpriv.usrLvl = '{$_POST['usrLvl']}'");
+                    in_usrlevel.lvName,
+                    in_sysprvlg.prvName,
+                    in_usrlvlpriv.usrLvl
+                FROM
+                    in_usrlvlpriv
+                    INNER JOIN in_usrlevel ON in_usrlvlpriv.usrLvl = in_usrlevel.lvID
+                    INNER JOIN in_sysprvlg ON in_usrlvlpriv.usrPrivilage = in_sysprvlg.prvCode
+                WHERE
+                    in_usrlvlpriv.usrLvl = '{$_POST['usrLvl']}'");
     } else if ($_POST['action'] == 'deletePriviLevel') {
         $system->prepareCommandQueryForAlertify("DELETE FROM `in_usrlvlpriv` WHERE (`usrLvl`='{$_POST['selUserLevel']}')", "Successfully Deleted", "Sorry ..! Counld Not Be Deleted");
     } else if ($_POST['action'] == 'rightuser_privileges') {
-        $system->prepareSelectQueryForJSON("SELECT
-in_usrprvlg.usrID,
-in_usrprvlg.usrPrvCode,
-in_sysprvlg.prvCode,
-in_sysprvlg.prvName,
-in_sysprvlg.prvStatus,
-in_sysprvlg.usrPrvMnuName,
-in_sysprvlg.usrPrvMnuPath
-FROM
-in_usrprvlg
-INNER JOIN in_sysprvlg ON in_usrprvlg.usrPrvCode = in_sysprvlg.prvCode
-WHERE
-in_usrprvlg.usrID = '{$_POST['sel_u']}'");
+
+        $system->prepareSelectQueryForJSON("
+            SELECT
+                in_usrprvlg.usrID,
+                in_usrprvlg.usrPrvCode,
+                in_sysprvlg.prvCode,
+                in_sysprvlg.prvName,
+                in_sysprvlg.prvStatus,
+                in_sysprvlg.usrPrvMnuName,
+                in_sysprvlg.usrPrvMnuPath
+            FROM
+                    in_usrprvlg
+                    INNER JOIN in_sysprvlg ON in_usrprvlg.usrPrvCode = in_sysprvlg.prvCode
+            WHERE
+                in_usrprvlg.usrID = '{$_POST['sel_u']}'   ");
     } else if ($_POST['action'] == 'loadfilter_left_user') {
         $all = array();
         $ret = array();
         MainConfig::connectDB();
+        $link = MainConfig::conDB();
         $query = "SELECT prvCode AS prvCode, in_sysprvlg.prvName AS prvName FROM in_sysprvlg";
-        $result = mysql_query($query);
-        while ($row = mysql_fetch_assoc($result)) {
+        $result = mysqli_query($link, $query);
+        while ($row = mysqli_fetch_assoc($result)) {
             $all[$row['prvCode']] = $row['prvName'];
         }
 
         $query = "SELECT in_usrprvlg.usrID, in_usrprvlg.usrPrvCode AS prvCode
         FROM in_usrprvlg WHERE in_usrprvlg.usrID = '{$_POST['sel_u']}'";
-        $result = mysql_query($query);
-        while ($row = mysql_fetch_assoc($result)) {
+        $result = mysqli_query($link, $query);
+        while ($row = mysqli_fetch_assoc($result)) {
             unset($all[$row['prvCode']]);
         }
         MainConfig::closeDB();
@@ -222,7 +221,8 @@ in_usrprvlg.usrID = '{$_POST['sel_u']}'");
         foreach ($_POST['options'] as $v) {
             $query = "DELETE FROM `in_usrprvlg` WHERE (`usrID`='{$_POST['userid']}' AND `usrPrvCode`= $v )";
             MainConfig::connectDB();
-            $result = mysql_query($query);
+            $link = MainConfig::conDB();
+            $result = mysqli_query($link, $query);
             MainConfig::closeDB();
             if ($result) {
                 $retar[] = array(

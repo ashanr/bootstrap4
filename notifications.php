@@ -191,8 +191,7 @@ if (!isset($_SESSION['user_id'])) {
                 hide_update_btn();
                 load_notification_table();
 
-                $('#logout').click(function ()
-                {
+                $('#logout').click(function (){
                     logout();
                 });
                 $('#btnSave').on('click', function () {
@@ -203,7 +202,6 @@ if (!isset($_SESSION['user_id'])) {
                 });
                 $('#btnReset').on('click', function () {
                     reset();
-
                 });
 
                 $('.search_table').click(function () {

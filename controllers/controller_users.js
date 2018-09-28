@@ -12,19 +12,19 @@ function save_user() {
     var lName = $('#lName').val();
     var mobile = $('#mobile').val();
     var work = $('#work').val();
-    var home = $('#home').val();
+    var home = '07000000';
     var eMail = $('#eMail').val();
     var userStatus = $('#userStatus').val();
-    $.post("views/userManegmentView.php", {action: 'addNewAdminUser', branchID: branchID, address: address, username: username, password: password, selUserLevel: selUserLevel, date: date, empNo: empNo, nic: nic, fName: fName, lName: lName, mobile: mobile, work: work, home: home, eMail: eMail, userStatus: userStatus}, function (e) {
+    $.post("Models/model_user_management.php", {action: 'addNewAdminUser', branchID: branchID, address: address, username: username, password: password, selUserLevel: selUserLevel, date: date, empNo: empNo, nic: nic, fName: fName, lName: lName, mobile: mobile, work: work, home: home, eMail: eMail, userStatus: userStatus}, function (e) {
         alertifyMsgDisplay(e, 1000, function () {
-            adminUserTbl();
-            clearAdTexBox();
+            admin_user_table();
+            clear_user_form();
             get_usernameCombo();
         });
     }, "json");
 }
 
-function clearAdTexBox() {
+function clear_user_form() {
     $('#address').val('');
     $('#username').val('');
     $('#password').val('');
@@ -58,10 +58,30 @@ function update_user() {
     var eMail = $('#eMail').val();
     var userStatus = $('#userStatus').val();
     var hiddenUserId = $('#hiddenUserId').val();
-    $.post("views/userManegmentView.php", {action: 'updateSystemUserData', hiddenUserId: hiddenUserId, address: address, selUserLevel: selUserLevel, date: date, empNo: empNo, nic: nic, fName: fName, lName: lName, mobile: mobile, work: work, home: home, eMail: eMail, userStatus: userStatus}, function(e) {
+    $.post("Models/model_user_management.php", {action: 'updateSystemUserData', hiddenUserId: hiddenUserId, address: address, selUserLevel: selUserLevel, date: date, empNo: empNo, nic: nic, fName: fName, lName: lName, mobile: mobile, work: work, home: home, eMail: eMail, userStatus: userStatus}, function(e) {
         alertifyMsgDisplay(e, 1000, function() {
             userLevelTble();
             clearAdTexBox();
+        });
+    }, "json");
+}
+
+function select_admin_user(data) {
+    $.post("Models/model_user_management.php", {action: 'getUserData', userId: data}, function (e) {
+        $.each(e, function (index, qData) {
+            $('#hiddenUserId').val(qData.usrID);
+            $('#address').val(qData.usrAddress);
+            get_userlecelCombo(qData.usrLevel);
+            $('#date').val(qData.usrRegDate);
+            $('#empNo').val(qData.usrEmpNo);
+            $('#nic').val(qData.usrNIC);
+            $('#fName').val(qData.usrFName);
+            $('#lName').val(qData.usrLName);
+            $('#mobile').val(qData.usrMobileNo);
+            $('#work').val(qData.usrWorkTelNo);
+            $('#home').val(qData.usrHomeTelNo);
+            $('#eMail').val(qData.usrEmail);
+            $('#userStatus').val(qData.usrStatus);
         });
     }, "json");
 }

@@ -1,6 +1,6 @@
-function adminUserTbl() {
+function admin_user_table() {
     var tableData = '';
-    $.post("views/userManegmentView.php", {action: "adminUserTbl"}, function (e) {
+    $.post("Models/model_user_management.php", {action: "adminUserTbl"}, function (e) {
         if (e === undefined || e.length === 0 || e === null) {
             tableData += '<tr><th colspan="6" class="alert alert-warning text-center"> -- No Data Found -- </th></tr>';
             $('.adminUsersTbl tbody').html('').append(tableData);
@@ -11,9 +11,9 @@ function adminUserTbl() {
                 } else {
                     tableData += '<tr>';
                     tableData += '<td>' + index + '</td>';
-                    tableData += '<td>' + qData.usrName + '</td>';
-                    tableData += '<td>' + qData.usrFName + '</td>';
-                    tableData += '<td>' + qData.usrLName + '</td>';
+                    tableData += '<td>' + (qData.usrName ? qData.usrName : '-') + '</td>';
+                    tableData += '<td>' + (qData.usrEmail ? qData.usrEmail : '-') + '</td>';
+                    tableData += '<td>' + qData.usrStatus + '</td>';
                     tableData += '<td>' + qData.lvName + '</td>';
                     tableData += '<td><div class="btn-group"><button class="btn btn-primary selectSystemUser" value="' + qData.usrID + '"><i class="fa fa-trash-o fa-lg"></i>&nbsp;Select</button><button class="btn btn-danger deletesystemUser" value="' + qData.usrID + '"><i class="fa fa-trash-o fa-lg"></i>&nbsp;Delete</button></div></td>';
                     tableData += '</tr>';
@@ -23,10 +23,9 @@ function adminUserTbl() {
             $('.adminUsersTbl tbody').html('').append(tableData);
 
             $('.selectSystemUser').click(function () {
-                $('#useerAdsavesection').addClass("hidden");
-                $('#userAdupdateSection').removeClass("hidden");
+                show_update_btn();
                 var adminUserId = $(this).val();
-                selectadminUserDataToUp(adminUserId);
+                select_admin_user(adminUserId);
             });
 
             $('.deletesystemUser').click(function () {

@@ -24,8 +24,8 @@ if (!isset($_SESSION['user_id'])) {
         <div class="main-wrapper">
             <div class="app" id="app">
                 <header class="header">
-                <?php require_once './include/mobile_menu.php'; ?>
-                 
+                    <?php require_once './include/mobile_menu.php'; ?>
+
                 </header>
                 <?php require 'include/sidebar.php'; ?>
 
@@ -69,6 +69,24 @@ if (!isset($_SESSION['user_id'])) {
                 });
 
             });
+
+
+
+            function load_notifications() {
+                var tableData = '';
+                $.post("table_models/table_model_notification.php", {table: 'load_notificaiton_table', text: text}, function (e) {
+                    if (e === undefined || e.length === 0 || e === null) {
+                        
+                    tableData += '<tr><th colspan="6" class="alert alert-warning text-center"> -- No Data Found -- </th></tr>';
+                        $('.table_notification tbody').html('').append(tableData);
+                        
+                    } else {
+                        $.each(e, function (index, qData) {
+                            index++;
+                        });
+                    }
+
+                });
 
         </script>
     </body>

@@ -1,4 +1,3 @@
-
 <!-- Required Framework JavaScript -->
 <script src="js/libs/jquery-3.3.1.min.js"></script>
 <!--<script src="js/libs/jquery-3.3.1.min.map"></script>-->
@@ -37,9 +36,7 @@
 <script type="text/javascript" src="js/systemConfig.js"></script>
 <script type="text/javascript" src="js/userManegmantConfig.js"></script>
 <script type="text/javascript" src="js/loadTables.js"></script>
-<script type="text/javascript" src="js/loadComboBox.js"></script>
-
-
+<script type="text/javascript" src="controllers/loadComboBox.js"></script>
 
 <!--DATEPICKER-->
 <script type="text/javascript" src="./js/custom/datepicker.js"></script>

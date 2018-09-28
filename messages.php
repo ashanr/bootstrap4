@@ -10,18 +10,61 @@ if (!isset($_SESSION['user_id'])) {
 }
 ?>
 <!DOCTYPE HTML>
-<html lang="en">
+
+<html lan="en">
     <head>
         <?php require_once './include/Header.php'; ?>
         <?php require_once './include/systemHeader.php'; ?>
+
+        <style type="text/css">
+            .datepicker {
+                font-size: 0.875em;
+            }
+            /* solution 2: the original datepicker use 20px so replace with the following:*/
+
+            .datepicker td, .datepicker th {
+                width: 1.5em;
+                height: 1.5em;
+            }
+
+        </style>
     </head>
 
     <body>
         <div class="main-wrapper">
             <div class="app" id="app">
 
-                <?php require 'include/sidebar.php'; ?>
+
+                <?php // require 'include/sidebar.php'; ?>
+
+                <aside class="sidebar">
+                    <div class="sidebar-container">
+                        <div class="sidebar-header">
+                            <div class="brand">
+                                <div class="logo">
+                                    <span class="l l1"></span>
+                                    <span class="l l2"></span>
+                                    <span class="l l3"></span>
+                                    <span class="l l4"></span>
+                                    <span class="l l5"></span>
+                                </div> Nolimitv </div>
+                        </div>
+
+                        <nav class="menu">
+                            <ul class="sidebar-menu metismenu" id="sidebar-menu">
+
+                                <li class="active">
+                                    <a href="dashboard.php">
+                                        <i class="fa fa-home"></i> Dashboard </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </aside>
+                
+                
                 <header class="header">
+
                     <div class="header-block header-block-collapse d-lg-none d-xl-none">
                         <button class="collapse-btn" id="sidebar-collapse-btn">
                             <i class="fa fa-bars"></i>
@@ -29,92 +72,78 @@ if (!isset($_SESSION['user_id'])) {
                     </div>
 
                     <div class="header-block header-block-search " >
-                        <h2> Test Page </h2>
+                        <h2> Message  Management </h2>
                     </div>
 
                     <?php require_once './include/mobile_menu.php'; ?>
+
                 </header>
 
-                <!--CONTENT-->
-                <article class="content forms-page">
+
+                <div class="sidebar-overlay" id="sidebar-overlay"></div>
+                <div class="sidebar-mobile-menu-handle" id="sidebar-mobile-menu-handle"></div>
+                <div class="mobile-menu-handle"></div>
+
+                <article class="content dashboard-page">
                     <section class="section">
-                        <div class="row sameheight-container ">
 
-                            <div class="col-md-4">
-                                <div class="card card-block sameheight-item" style="height:auto">
-                                    <div class="title-block">
-                                        <h3 class="title " style="color:#1e7e34"> Add New User </h3>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="">User Type</label>
-                                        <select class="form-control" id="selUserLevel">
-                                            <option value="1">Admin</option>
-                                            <option value="2">Staff</option>
-                                            <option value="3">Client</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="">First Name</label>
-                                        <input type="text" class="form-control d-none" id="id" >
-                                        <input type="text" class="form-control" id="fName" placeholder="First Name">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="">Last Name</label>
-                                        <input type="text" class="form-control" id="lName" placeholder="Last Name">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="">Address</label>
-                                        <textarea  class="form-control"style="resize: none" id="address" rows="4" placeholder="Address"></textarea>
-                                    </div>
+                        <div class="row sameheight-container">
 
-                                </div>
-                            </div>
-
-                            <div class="col-md-4">
-                                <div class="card card-block sameheight-item" style="height:auto">
-
-                                    <div class="form-group">
-                                        <label for="">Reg Date</label>
-                                        <input type="text" class="form-control" id="date" placeholder="Reg"> 
-                                    </div>
-
-
-                                </div>
-                            </div>
-
-                            <div class="col-md-4">
-
+                            <div class="col-md-6">
                                 <div class="card card-block sameheight-item" style="height:auto;">
-                                    <div class="form-group">
-                                        <label for="">Contact No</label>
-                                        <input type="text" class="form-control" id="mobile" placeholder="Contact No">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="">Email</label>
-                                        <input type="text" class="form-control" id="eMail" placeholder="email">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="">Username</label>
-                                        <input type="text" class="form-control" id="username" placeholder="username">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="">password</label>
-                                        <input type="text" class="form-control" id="password" placeholder="password">
+                                    <div class="title-block">
+                                        <h3 class="title " style="color:#1e7e34"> Message Manage </h3>
                                     </div>
 
                                     <div class="form-group">
-                                        <button id="btnSave" type="button" class="btn btn-primary btnSave">Save </button>
+                                        <label for="">Sender Email</label>
+                                        <input type="text" class="form-control" id="sender" placeholder="Sent By">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="">Receiver Email</label>
+                                        <input type="text" class="form-control" id="receiver" placeholder="Receive By">
+                                    </div>
+
+                                    <div class="form-group date" >
+                                        <label for="">Date</label>
+                                        <input type="text" class="form-control" id="datepicker" value=""> 
+                                        <!--<input type="text" class="form-control" id="datepicker" value="<?php // echo date("Y-m-d");         ?>">--> 
+                                        <!--<input id="datepicker" width="276" />-->
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+
+                                <div class="card card-block sameheight-item" style="height: auto;">
+
+
+                                    <div class="form-group">
+                                        <label for="">Title</label>
+                                        <input type="text" class="form-control d-none" id="id" >
+                                        <input type="text" class="form-control" id="title" placeholder="Title">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="">Message</label>
+                                        <textarea  class="form-control"style="resize: none" id="message" rows="6" placeholder="Message Here"></textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <button id="btnSave" type="button" class="btn btn-primary btnSave">Save Message</button>
                                         <button id="btnUpdate" type="button" class="btn btn-warning btnUpdate">Update</button>
                                         <button id="btnReset" type="button" class="btn btn-secondary btnReset">Reset</button>
                                     </div>
+
                                 </div>
                             </div>
 
                         </div>
 
                     </section>
-
                     <section class="section">
+
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="card">
@@ -124,7 +153,7 @@ if (!isset($_SESSION['user_id'])) {
                                                 <div class="row">
 
                                                     <div class="col-md-6">
-                                                        <h3 class="title"> Users Table </h3>
+                                                        <h3 class="title"> Message Table </h3>
                                                     </div>
 
                                                     <div class="col-md-6">
@@ -139,21 +168,22 @@ if (!isset($_SESSION['user_id'])) {
                                                             </div>
                                                         </form>
                                                     </div>
+
                                                 </div>
                                             </div>
 
                                         </div>
                                         <section class="example">
                                             <div class="table-flip-scroll">
-                                                <table class="table table-striped table-bordered sm table-hover flip-content adminUsersTbl">
+                                                <table class="table table-striped table-bordered sm table-hover flip-content table_notification">
                                                     <thead class="flip-header">
                                                         <tr>
                                                             <th>#</th>
-                                                            <th>Username</th>
-                                                            <th>Email</th>
-                                                            <th>Status</th>
-                                                            <th>Name</th>
-
+                                                            <th>Title</th>
+                                                            <th>Message</th>
+                                                            <th>Publish Date</th>
+                                                            <th>Expire Date</th>
+                                                            <th>Added Date</th>
                                                             <th>Action</th>
                                                         </tr>
                                                     </thead>
@@ -167,61 +197,51 @@ if (!isset($_SESSION['user_id'])) {
                                 </div>
                             </div>
                         </div>
-                    </section>
 
+
+                    </section>
                     <section class="section map-tasks">
+
                     </section>
                 </article>
-                <!--CONTENT END-->
+
+                <?PHP require 'include/Footer.php'; ?>
+                <?PHP require 'include/systemFooter.php'; ?>
+                <script type="text/javascript" src="./controllers/controller_mail.js"></script>
+                <script type="text/javascript" src="./table_controllers/table_mail.js"></script>
+                <!--NOTIFICATION PAGE CONTROLLER-->
 
             </div>
-            <!--End System user-->
-
-
-
-
-            <?PHP require 'include/Footer.php'; ?>
-            <?PHP require 'include/systemFooter.php'; ?>
-            <script type="text/javascript" src="./controllers/controller_users.js"></script>
-            <script type="text/javascript" src="./table_controllers/table_users.js"></script>
         </div>
-        <!-- Reference block for JS -->
-        <div class="ref" id="ref">
-            <div class="color-primary"></div>
-            <div class="chart">
-                <div class="color-primary"></div>
-                <div class="color-secondary"></div>
-            </div>
-        </div>
-        <script src="js/vendor.js"></script>
-        <script src="js/app.js"></script>
+
         <script type="text/javascript">
             $(function () {
                 $(document).ready(function () {
                     //     show_save();
                     $('#btnUpdate').addClass('hidden');
-                    admin_user_table();
+                    load_notification_table();
                     hide_update_btn();
                 });
                 hide_update_btn();
-                admin_user_table();
-                $('#logout').click(function ()
-                {
+                load_notification_table();
+
+                $('#logout').click(function () {
                     logout();
                 });
                 $('#btnSave').on('click', function () {
-                    save_user();
+                    save_mail();
                 });
                 $('#btnUpdate').on('click', function () {
-                    update_user();
+                    update_mail();
                 });
                 $('#btnReset').on('click', function () {
                     reset();
                 });
 
                 $('.search_table').click(function () {
-                    admin_user_table();
+                    load_notification_table();
                 });
+
             });
         </script>
 
@@ -236,8 +256,10 @@ if (!isset($_SESSION['user_id'])) {
             $('#datepicker').datepicker("setDate", new Date());
             $('#pub_date').datepicker();
             $('#exp_date').datepicker();
+        </script>
+        <!--DATEPICKER--> 
 
-
+        <script type="text/javascript">
 
             function show_update_btn() {
 
@@ -253,6 +275,7 @@ if (!isset($_SESSION['user_id'])) {
                     $('#btnReset').removeClass('d-none');
                 }
             }
+
             function hide_update_btn() {
 
                 if ($('#btnSave').hasClass('d-none')) {
@@ -268,6 +291,7 @@ if (!isset($_SESSION['user_id'])) {
 
 
         </script>
-        <!--DATEPICKER--> 
+
+
     </body>
 </html>
