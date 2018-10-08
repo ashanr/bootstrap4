@@ -6,6 +6,9 @@ $db_HOST = 'localhost';
 $db_USER = 'root';
 $db_PASS = '';
 $db_NAME = 'usermanage';
+$store_db_NAME = 'magento';
+$store_db_USER = 'root';
+$store_db_PASS = '';
 
 $user_registration = 1;  // set 0 or 1
 
@@ -42,6 +45,27 @@ class MainConfig {
         mysqli_close($mysqli);
     }
 
+    //Connect to Store Database
+    public static function connectStoreDB() {
+        global $db_HOST, $store_db_USER, $store_db_PASS, $store_db_NAME;
+
+        $link = ($GLOBALS["___mysqli_ston"] = mysqli_connect($db_HOST, $store_db_USER, $store_db_PASS)) or die("Problem occur in connection");
+        //  $db = ((bool) mysqli_query($con, "USE " . info));
+
+        mysqli_set_charset($link, 'utf8');
+        mysqli_query($link, "SET @@session.sql_mode= 'NO_ENGINE_SUBSTITUTION'");
+        date_default_timezone_set('Asia/Colombo');
+        $db = mysqli_select_db($link, $store_db_NAME) or die("Couldn't select database");
+    }
+
+    //Store DB Link
+    public static function conStoreDB() {
+        global $db_HOST, $store_db_USER, $store_db_PASS, $store_db_NAME, $mysqli;
+        $mysqli = new mysqli($db_HOST, $store_db_USER, $store_db_PASS, $store_db_NAME);
+
+        return $mysqli;
+    }
+    
     function EncodeURL($url) {
         $new = strtolower(ereg_replace(' ', '_', $url));
         return($new);

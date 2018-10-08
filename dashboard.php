@@ -12,33 +12,105 @@ if (!isset($_SESSION['user_id'])) {
 <!DOCTYPE HTML>
 
 <html lan="en">
-
     <head>
         <?php require_once './include/Header.php'; ?>
         <?php require_once './include/systemHeader.php'; ?>
 
+        <style type="text/css">
+            .datepicker {
+                font-size: 0.875em;
+            }
+            /* solution 2: the original datepicker use 20px so replace with the following:*/
 
+            .datepicker td, .datepicker th {
+                width: 1.5em;
+                height: 1.5em;
+            }
+
+        </style>
     </head>
 
     <body>
         <div class="main-wrapper">
             <div class="app" id="app">
-                <header class="header">
-                    <?php require_once './include/mobile_menu.php'; ?>
 
-                </header>
                 <?php require 'include/sidebar.php'; ?>
+
+                <header class="header">
+
+                    <div class="header-block header-block-collapse d-lg-none d-xl-none">
+                        <button class="collapse-btn" id="sidebar-collapse-btn">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                    </div>
+
+                    <div class="header-block header-block-search " >
+                        <h2> Dashboard </h2>
+                    </div>
+                    <?php require_once './include/mobile_menu.php'; ?>
+                </header>
 
                 <div class="sidebar-overlay" id="sidebar-overlay"></div>
                 <div class="sidebar-mobile-menu-handle" id="sidebar-mobile-menu-handle"></div>
                 <div class="mobile-menu-handle"></div>
+
                 <article class="content dashboard-page">
                     <section class="section">
 
-                    </section>
-                    <section class="section">
+                        <div class="row sameheight-container">
+                            <div class="col-md-4">
+                                <div class="card card-block sameheight-item" style="height: 250px;">
+                                    <div class="title-block">
+                                        <a class="hidden"  href="client_mangement.php" style="text-decoration: none;color: #000">
+                                            <div class="thumbnail btn-dashboard" style="border-radius:5px; padding: 10px;">
+
+                                                <div class="caption text-center">
+                                                    <img src="img/dashboard/user.png" style="width:128px;height:128px;margin-bottom: 30px;">
+                                                    <h3>System Notification</h3>
+                                                    <p></p>
+                                                </div>
+                                            </div>
+                                        </a> 
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="card card-block sameheight-item" style="height:250px; cursor: pointer">
+                                    <div class="title-block">
+                                        <a class="loadPrevModal"href="client_mangement.php">
+                                            <div class="caption text-center">
+                                                <div class="thumbnail btn-dashboard" style="border-radius:5px; padding: 10px;">
+                                                    <img src="img/dashboard/contact.png" style="width:128px;height:128px;margin-bottom:30px">
+                                                    <h3 style="color:#000;">Customer Management</h3>
+                                                    <p></p>
+                                                </div>
+                                            </div>
+                                        </a> 
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="card card-block sameheight-item" style="height:250px; cursor: pointer">
+                                    <div class="title-block">
+                                        <a class="loadPrevModal" data-toggle="modal" data-target=".addUserPrivillages">
+                                            <div class="caption text-center">
+                                                <div class="thumbnail btn-dashboard" style="border-radius:5px; padding: 10px;">
+                                                    <img src="img/dashboard/userprev.png" style="width:128px;height:128px;margin-bottom: 30px">
+                                                    <h3 style="color:#000;">Email Management</h3>
+                                                    <p></p>
+                                                </div>
+                                            </div>
+                                        </a> 
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
 
                     </section>
+
                     <section class="section map-tasks">
 
                     </section>
@@ -46,48 +118,58 @@ if (!isset($_SESSION['user_id'])) {
 
                 <?PHP require 'include/Footer.php'; ?>
                 <?PHP require 'include/systemFooter.php'; ?>
+                <script type="text/javascript" src="./controllers/controller_notification.js"></script>
+                <script type="text/javascript" src="./table_controllers/table_notification.js"></script>
+                <!--NOTIFICATION PAGE CONTROLLER-->
+
             </div>
         </div>
 
-
-
-        <!-- Reference block for JS -->
-        <div class="ref" id="ref">
-            <div class="color-primary"></div>
-            <div class="chart">
-                <div class="color-primary"></div>
-                <div class="color-secondary"></div>
-            </div>
-        </div>
-        <script src="js/vendor.js"></script>
-        <script src="js/app.js"></script>
         <script type="text/javascript">
-
             $(function () {
+
+                $(document).ready(function () {
+                    //     show_save();
+                    $('#btnUpdate').addClass('hidden');
+                    load_notification_table();
+                    hide_update_btn();
+                });
+                hide_update_btn();
+                load_notification_table();
+
                 $('#logout').click(function () {
                     logout();
+                });
+                $('#btnSave').on('click', function () {
+                    save_notification();
+                });
+                $('#btnUpdate').on('click', function () {
+                    update_notification();
+                });
+                $('#btnReset').on('click', function () {
+                    reset();
+                });
+
+                $('.search_table').click(function () {
+                    load_notification_table();
                 });
 
             });
 
-
-
-            function load_notifications() {
-                var tableData = '';
-                $.post("table_models/table_model_notification.php", {table: 'load_notificaiton_table', text: text}, function (e) {
-                    if (e === undefined || e.length === 0 || e === null) {
-                        
-                    tableData += '<tr><th colspan="6" class="alert alert-warning text-center"> -- No Data Found -- </th></tr>';
-                        $('.table_notification tbody').html('').append(tableData);
-                        
-                    } else {
-                        $.each(e, function (index, qData) {
-                            index++;
-                        });
-                    }
-
-                });
-
         </script>
+
+        <script type="text/javascript">
+            $('#datepicker,#pub_date,#exp_date').datepicker({
+                weekStart: 1,
+                daysOfWeekHighlighted: "6,0",
+                autoclose: true,
+                todayHighlight: true,
+
+            });
+            $('#datepicker').datepicker("setDate", new Date());
+            $('#pub_date').datepicker();
+            $('#exp_date').datepicker();
+        </script>
+        <!--DATEPICKER--> 
     </body>
 </html>

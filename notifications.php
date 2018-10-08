@@ -33,10 +33,9 @@ if (!isset($_SESSION['user_id'])) {
     <body>
         <div class="main-wrapper">
             <div class="app" id="app">
-               
-                
-                 <?php require 'include/sidebar.php'; ?>
-                
+
+                <?php require 'include/sidebar.php'; ?>
+
                 <header class="header">
 
                     <div class="header-block header-block-collapse d-lg-none d-xl-none">
@@ -46,18 +45,15 @@ if (!isset($_SESSION['user_id'])) {
                     </div>
 
                     <div class="header-block header-block-search " >
-                        <h2> Notification  Management </h2>
+                        <h2> Notifications </h2>
                     </div>
-
                     <?php require_once './include/mobile_menu.php'; ?>
-
                 </header>
 
-                
                 <div class="sidebar-overlay" id="sidebar-overlay"></div>
                 <div class="sidebar-mobile-menu-handle" id="sidebar-mobile-menu-handle"></div>
                 <div class="mobile-menu-handle"></div>
-                
+
                 <article class="content dashboard-page">
                     <section class="section">
 
@@ -191,7 +187,7 @@ if (!isset($_SESSION['user_id'])) {
                 hide_update_btn();
                 load_notification_table();
 
-                $('#logout').click(function (){
+                $('#logout').click(function () {
                     logout();
                 });
                 $('#btnSave').on('click', function () {

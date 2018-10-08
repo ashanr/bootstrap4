@@ -33,6 +33,7 @@ if (!isset($_SESSION['user_id'])) {
                     </div>
 
                     <section class="section">
+                        
                         <div class="row sameheight-container">
                             <div class="col-md-4">
                                 <div class="card card-block sameheight-item" style="height: 709px;">
@@ -68,6 +69,7 @@ if (!isset($_SESSION['user_id'])) {
                             </div>
 
                         </div>
+                        
                     </section>
                 </article>
                 <!--CONTENT END-->

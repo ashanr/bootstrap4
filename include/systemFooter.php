@@ -13,8 +13,8 @@
 
 
 <!--CUSTOM JS FILES-->
-<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
-<script type="text/javascript" src="js/jquery-3.3.1.min.map"></script>
+<!--<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="js/jquery-3.3.1.min.map"></script>-->
 
 <!-- THEME JS-->
 <!--<script src="js/vendor.js"></script>-->
@@ -28,9 +28,9 @@
 <script type="text/javascript" src="js/jquery.ajax-cross-origin.min.js"></script>
 
 
-<!--ALERTIFY-->
-<script type="text/javascript" src="js/popper/popper.min.js"></script>
-<script type="text/javascript" src="js/popper/popper.min.js.map"></script>
+<!--POPPER-->
+<!--<script type="text/javascript" src="js/popper/popper.min.js"></script>-->
+<!--<script type="text/javascript" src="js/popper/popper.min.js.map"></script>-->
 
 <!--CUSTOM JS FILES-->
 <script type="text/javascript" src="js/systemConfig.js"></script>

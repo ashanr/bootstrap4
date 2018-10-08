@@ -23,11 +23,11 @@ function load_notification_table(text, callBack) {
                 tableData += '<td>' + qData.publish_date + '</td>';
                 tableData += '<td>' + qData.expire_date + '</td>';
                 tableData += '<td>' + qData.added_date + '</td>';
-
                 tableData += '<td><div class="btn-group"><button class="btn btn-oval btn-info  btn-sm sel_notification" value="' + qData.id + '"><i class="fa fa-edit fa-lg"></i>&nbsp;Select</button>\n\
-<button class="btn btn-oval btn-danger  btn-sm delete_notification" value="' + qData.id + '"><i class="fa fa-times-circle fa-lg"></i>&nbsp;Delete</button></div></td>';
+                             <button class="btn btn-oval btn-danger  btn-sm delete_notification" value="' + qData.id + '"><i class="fa fa-times-circle fa-lg"></i>&nbsp;Delete</button></div></td>';
                 tableData += '</tr>';
             });
+            
             $('.table_notification tbody').html('').append(tableData);
 
             $('.sel_notification').click(function () {
