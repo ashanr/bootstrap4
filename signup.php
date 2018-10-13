@@ -25,8 +25,8 @@ session_start();
             }
 
         </style>
-        
-      
+
+
     </head>
 
     <body>
@@ -57,7 +57,9 @@ session_start();
                         </div>
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="email" class="form-control underlined" name="email" id="email" placeholder="Enter email address" required=""> </div>
+                            <input type="email" class="form-control underlined" name="email" id="email" placeholder="Enter email address" required=""> 
+                        </div>
+
                         <div class="form-group">
                             <label for="password">Password</label>
                             <div class="row">
@@ -67,6 +69,7 @@ session_start();
                                     <input type="password" class="form-control underlined" name="retype_password" id="retype_password" placeholder="Re-type password" required=""> </div>
                             </div>
                         </div>
+
                         <div class="form-group">
                             <label for="agree">
                                 <input class="checkbox" name="agree" id="agree" type="checkbox" required="">
@@ -86,8 +89,8 @@ session_start();
                     </div>
                 </div>
                 <div class="text-center">
-                    <a href="index.html" class="btn btn-secondary btn-sm">
-                        <i class="fa fa-arrow-left"></i> Back to dashboard </a>
+                    <a href="index.php" class="btn btn-secondary btn-sm">
+                        <i class="fa fa-arrow-left"></i> Back to Sign In </a>
                 </div>
             </div>
         </div>
@@ -106,8 +109,7 @@ session_start();
             $(function () {
 
                 $(document).ready(function () {
-                   
-                   
+
                 });
 
                 $('#btnSignup').on('click', function () {
@@ -115,18 +117,17 @@ session_start();
                 });
 
                 function signup_new_customer() {
+
                     var firstname = $('#firstname').val();
                     var lastname = $('#lastname').val();
                     var email = $('#email').val();
                     var password = $('#password').val();
-
 
                     if ((firstname.length = 0) || (firstname == '')) {
                         var msg7 = alertify.error("Please Enter Firstname!");
                         msg7.delay(3).setContent(msg7);
                         return;
                     }
-
                     if ((lastname.length = 0) || (lastname == '')) {
                         var msg7 = alertify.error("Please Enter Lastname!");
                         msg7.delay(3).setContent(msg7);
@@ -143,15 +144,25 @@ session_start();
                         return;
                     }
 
-                    $.post("models/model_signup.php", {action: "signup_new_user", firstname: firstname, last_name: lastname, email: email, password: password}, function (e) {
+                    if (email.length > 0) {
+                        var email_address = $('#email').val();
+                        var email_regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i;
+                        if (!email_regex.test(email_address)) {
+                            alertify.error('Please Enter a valid email');
+                            return;
+                        }
+                    }
+
+                    $.post("models/model_signup.php", {action: "signup_new_user", firstname: firstname, lastname: lastname, email: email, password: password}, function (e) {
                         $.each(e, function (index, msgData) {
 
                             if (e === undefined || e.length === 0 || e === null) {
                                 var msg9 = alertify.error("Error!");
                                 msg9.delay(3).setContent(msg9);
                             } else if (msgData.msgType == 1) {
-                                var msg7 = alertify.success("Successfully Saved!");
+                                var msg7 = alertify.success("Successfully Sign Up!");
                                 msg7.delay(3).setContent(msg7);
+                                timelyRedirect("index.php", 500);
                             } else if (msgData.msgType == 2) {
                                 var msg7 = alertify.error("Error in Save!");
                                 msg7.delay(3).setContent(msg7);

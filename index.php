@@ -12,8 +12,8 @@
                 <div id="mobile-bars-icon-pro" class="noselect"><i class="fas fa-bars"></i></div>
                 <div class="clearfix"></div>
             </div><!-- close .container -->
-
         </header>
+
         <div class="container">
             <div class="container-fluid">
                 <div style="height:85px;"></div>
@@ -27,11 +27,12 @@
                         </div>
                         <div class="form-group">
                             <input type="text" class="form-control" id="userName" placeholder="Username">
-                            <h6><span id="uname_error" style="color:#ff0000"></span> </h6>
+                            <h6>
+                            <span id="uname_error" style="color:#ff0000"> </span> </h6>
                         </div>
                         <div class="form-group">
                             <input type="password" class="form-control" id="password" placeholder="Password">
-                            <h6><span id="pass_error"></span> </h6>
+                            <h6><span id="pass_error"> </span> </h6>
                         </div>
                         <div class="form-group">
                             <button type="button" id="logSystem"  class="btn btn-green-pro btn-display-block">Sign In</button>
@@ -52,9 +53,9 @@
             </div><!-- close .container -->
             <hr>
         </div><!-- close #content-pro -->
+        
         <?php require_once './include/Footer.php'; ?>
         <a href="#0" id="pro-scroll-top"><i class="fas fa-chevron-up"></i></a>
             <?php require_once './include/systemFooter.php'; ?>
-
     </body>
 </html>

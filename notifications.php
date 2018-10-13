@@ -77,7 +77,6 @@ if (!isset($_SESSION['user_id'])) {
                             </div>
 
                             <div class="col-md-6">
-
                                 <div class="card card-block sameheight-item" style="height: 355px;">
                                     <div class="form-group-sm date" >
                                         <label for="">Date</label>

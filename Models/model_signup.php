@@ -16,15 +16,17 @@ $link = MainConfig::conDB();
 if (array_key_exists("action", $_POST)) {
 
     if ($_POST['action'] == 'signup_new_user') {
-        $title = $_POST['title'];
-        $message = $_POST['message'];
+        $firstname = $_POST['firstname'];
+        $lastname = $_POST['lastname'];
+        $email = $_POST['email'];
+        $password = $_POST['password'];
         $today = date('Y-m-d');
 
         MainConfig::connectDB(); //open connection
         $link = MainConfig::conDB(); //get connection to link variable
 
-        $query = "INSERT INTO `in_system_notifications` (`title`, `message`, `publish_date`, `expire_date`,`added_date`) VALUES ('{$title}', '{$message}', '{$pub_date}','{$exp_date}','{$today}' );";
-
-        $system->prepareCommandQueryForAlertify($query, "Successfully Saved", "Sorry ..! Counld Not Be Saved");
+        $query = "INSERT INTO `in_clients` ( `firstname`, `lastname`, `email`, `password_hash` ) VALUES ('{$firstname}', '{$lastname}', '{$email}', '{$password}')";
+               
+       $system->prepareCommandQueryForAlertify($query, "Sign Up Successful", "Sorry ..! Could Not Be Sign Up");
     }
 }
