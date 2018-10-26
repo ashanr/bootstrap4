@@ -58,14 +58,14 @@ if (!isset($_SESSION['user_id'])) {
                     <section class="section">
 
                         <div class="row sameheight-container">
-                            <div class="col-md-4">
-                                <div class="card card-block sameheight-item" style="height: 250px;">
+                            <div class="col-md-3">
+                                <div class="card card-block sameheight-item" style="height: 200px;">
                                     <div class="title-block">
                                         <a class="hidden"  href="client_mangement.php" style="text-decoration: none;color: #000">
                                             <div class="thumbnail btn-dashboard" style="border-radius:5px; padding: 10px;">
 
                                                 <div class="caption text-center">
-                                                    <img src="img/dashboard/user.png" style="width:128px;height:128px;margin-bottom: 30px;">
+                                                    <img src="img/dashboard/user.png" style="width:64px;height:64px;margin-bottom: 30px;">
                                                     <h3>System Notification</h3>
                                                     <p></p>
                                                 </div>
@@ -75,13 +75,13 @@ if (!isset($_SESSION['user_id'])) {
                                 </div>
                             </div>
 
-                            <div class="col-md-4">
-                                <div class="card card-block sameheight-item" style="height:250px; cursor: pointer">
+                            <div class="col-md-3">
+                                <div class="card card-block sameheight-item" style="height:200px; cursor: pointer">
                                     <div class="title-block">
-                                        <a class="loadPrevModal"href="client_mangement.php">
+                                        <a class="loadPrevModal"href="client_mangement.php" style="text-decoration: none;color: #000"> 
                                             <div class="caption text-center">
                                                 <div class="thumbnail btn-dashboard" style="border-radius:5px; padding: 10px;">
-                                                    <img src="img/dashboard/contact.png" style="width:128px;height:128px;margin-bottom:30px">
+                                                    <img src="img/dashboard/contact.png" style="width:65px;height:64px;margin-bottom:30px">
                                                     <h3 style="color:#000;">Customer Management</h3>
                                                     <p></p>
                                                 </div>
@@ -91,14 +91,30 @@ if (!isset($_SESSION['user_id'])) {
                                 </div>
                             </div>
 
-                            <div class="col-md-4">
-                                <div class="card card-block sameheight-item" style="height:250px; cursor: pointer">
+                            <div class="col-md-3">
+                                <div class="card card-block sameheight-item" style="height:200px; cursor: pointer">
                                     <div class="title-block">
-                                        <a class="loadPrevModal" data-toggle="modal" data-target=".addUserPrivillages">
+                                        <a class="loadPrevModal"  style="text-decoration: none;color: #000">
                                             <div class="caption text-center">
                                                 <div class="thumbnail btn-dashboard" style="border-radius:5px; padding: 10px;">
-                                                    <img src="img/dashboard/userprev.png" style="width:128px;height:128px;margin-bottom: 30px">
+                                                    <img src="img/dashboard/userprev.png" style="width:64px;height:64px;margin-bottom: 30px">
                                                     <h3 style="color:#000;">Email Management</h3>
+                                                    <p></p>
+                                                </div>
+                                            </div>
+                                        </a> 
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                <div class="card card-block sameheight-item" style="height:200px; cursor: pointer">
+                                    <div class="title-block">
+                                        <a class="loadPrevModal" href="affiliate_accounts.php" style="text-decoration: none;color: #000">
+                                            <div class="caption text-center">
+                                                <div class="thumbnail btn-dashboard" style="border-radius:5px; padding: 10px;">
+                                                    <img src="img/dashboard/balance.png" style="width:64px;height:64px;margin-bottom: 30px">
+                                                    <h3 style="color:#000;">Affiliate Accounts</h3>
                                                     <p></p>
                                                 </div>
                                             </div>
@@ -109,6 +125,73 @@ if (!isset($_SESSION['user_id'])) {
 
                         </div>
 
+                        <div class="row sameheight-container">
+                            <div class="col-md-3">
+                                <div class="card card-block sameheight-item" style="height: 200px;">
+                                    <div class="title-block">
+                                        <a class="hidden"  href="affiliate_tree.php" style="text-decoration: none;color: #000">
+                                            <div class="thumbnail btn-dashboard" style="border-radius:5px; padding: 10px;">
+
+                                                <div class="caption text-center">
+                                                    <img src="img/dashboard/tradeNature.png" style="width:64px;height:64px;margin-bottom: 30px;">
+                                                    <h3>Affiliate Tree</h3>
+                                                    <p></p>
+                                                </div>
+                                            </div>
+                                        </a> 
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                <div class="card card-block sameheight-item" style="height:200px; cursor: pointer">
+                                    <div class="title-block">
+                                        <a class="loadPrevModal"href="client_mangement.php" style="text-decoration: none;color: #000"> 
+                                            <div class="caption text-center">
+                                                <div class="thumbnail btn-dashboard" style="border-radius:5px; padding: 10px;">
+                                                    <img src="img/dashboard/contact.png" style="width:65px;height:64px;margin-bottom:30px">
+                                                    <h3 style="color:#000;">Customer Management</h3>
+                                                    <p></p>
+                                                </div>
+                                            </div>
+                                        </a> 
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                <div class="card card-block sameheight-item" style="height:200px; cursor: pointer">
+                                    <div class="title-block">
+                                        <a class="loadPrevModal"  style="text-decoration: none;color: #000">
+                                            <div class="caption text-center">
+                                                <div class="thumbnail btn-dashboard" style="border-radius:5px; padding: 10px;">
+                                                    <img src="img/dashboard/userprev.png" style="width:64px;height:64px;margin-bottom: 30px">
+                                                    <h3 style="color:#000;">Email Management</h3>
+                                                    <p></p>
+                                                </div>
+                                            </div>
+                                        </a> 
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                <div class="card card-block sameheight-item" style="height:200px; cursor: pointer">
+                                    <div class="title-block">
+                                        <a class="loadPrevModal" href="affiliate_accounts.php" style="text-decoration: none;color: #000">
+                                            <div class="caption text-center">
+                                                <div class="thumbnail btn-dashboard" style="border-radius:5px; padding: 10px;">
+                                                    <img src="img/dashboard/balance.png" style="width:64px;height:64px;margin-bottom: 30px">
+                                                    <h3 style="color:#000;">Affiliate Accounts</h3>
+                                                    <p></p>
+                                                </div>
+                                            </div>
+                                        </a> 
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
                     </section>
 
                     <section class="section map-tasks">

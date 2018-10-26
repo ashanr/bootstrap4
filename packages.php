@@ -79,6 +79,7 @@ session_start();
                             </div>
 
                             <div class="col-md-2 col-lg-2 col-xl-2">
+                                <a href="plan_1month.php">
                                 <div class="card card-default">
                                     <div class="card-header">
                                         <div class="header-block">
@@ -91,6 +92,7 @@ session_start();
                                     </div>
                                     <div class="card-footer"> <button class="btn  btn-info btnAddCart" value="1" style="color:#ffffff;background-color: #1979c3;font-weight: bold"> Add To Cart </button> </div>
                                 </div>
+                                </a>
                             </div>
 
                             <div class="col-md-2 col-lg-2 col-xl-2">

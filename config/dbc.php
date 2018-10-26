@@ -1,12 +1,12 @@
 <?php
 
 // @@  Developed By Ashan Rajapaksha  2018   Uses PHP 7.0; 
-$baseURL = 'http://localhost/b4admin/back';
+$baseURL = 'http://localhost/bootstrap4/';
 $db_HOST = 'localhost';
 $db_USER = 'root';
 $db_PASS = '';
 $db_NAME = 'usermanage';
-$store_db_NAME = 'magento';
+$store_db_NAME = 'mage';
 $store_db_USER = 'root';
 $store_db_PASS = '';
 
@@ -49,7 +49,7 @@ class MainConfig {
     public static function connectStoreDB() {
         global $db_HOST, $store_db_USER, $store_db_PASS, $store_db_NAME;
 
-        $link = ($GLOBALS["___mysqli_ston"] = mysqli_connect($db_HOST, $store_db_USER, $store_db_PASS)) or die("Problem occur in connection");
+        $link = ($GLOBALS["___mysqli_ston"] = mysqli_connect($db_HOST, $store_db_USER, $store_db_PASS)) or die("Problem occured in connection");
         //  $db = ((bool) mysqli_query($con, "USE " . info));
 
         mysqli_set_charset($link, 'utf8');
@@ -62,7 +62,6 @@ class MainConfig {
     public static function conStoreDB() {
         global $db_HOST, $store_db_USER, $store_db_PASS, $store_db_NAME, $mysqli;
         $mysqli = new mysqli($db_HOST, $store_db_USER, $store_db_PASS, $store_db_NAME);
-
         return $mysqli;
     }
     

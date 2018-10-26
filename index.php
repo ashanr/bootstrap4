@@ -28,7 +28,7 @@
                         <div class="form-group">
                             <input type="text" class="form-control" id="userName" placeholder="Username">
                             <h6>
-                            <span id="uname_error" style="color:#ff0000"> </span> </h6>
+                                <span id="uname_error" style="color:#ff0000"> </span> </h6>
                         </div>
                         <div class="form-group">
                             <input type="password" class="form-control" id="password" placeholder="Password">
@@ -43,6 +43,12 @@
                                 <div class="col checkbox-remember-pro"><input type="checkbox" id="checkbox-remember"><label for="checkbox-remember" class="col-form-label">Remember me</label></div>
                             </div>
                         </div><!-- close .container-fluid -->
+
+                        <div class="form-group">
+                            <a href="signup.php" style="text-decoration: none;color: #000"> <button type="button" id="logSystem"  class="btn btn-info btn-display-block" style="color:#ffffff;">Not a Member Yet, Sign Up Here</button></a>
+                            <h6><span id="login_error" style="color:#ff0000"></span> </h6>
+                        </div>
+
                         <div class="clearfix"></div>
                     </div>      
 
@@ -53,8 +59,22 @@
             </div><!-- close .container -->
             <hr>
         </div><!-- close #content-pro -->
-        
-        <?php require_once './include/Footer.php'; ?>
+
+        <footer class="footer">
+
+            <div class="footer-block buttons">
+
+            </div>
+
+            <div class="footer-block author">
+                <ul>
+                    <li>  Nolimit Zone </li>
+                    <li> <a href="admin_login.php">Admin Panel</a></li>
+                  
+                </ul>
+            </div>
+        </footer>
+
         <a href="#0" id="pro-scroll-top"><i class="fas fa-chevron-up"></i></a>
             <?php require_once './include/systemFooter.php'; ?>
     </body>

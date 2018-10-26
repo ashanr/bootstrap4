@@ -7,7 +7,8 @@
 
     <div class="footer-block author">
         <ul>
-            <li>  Cyber Code IT Solutions </li>
+            <li>  Nolimit Zone </li>
+            <li> <a href="admin_login.php">Admin Panel</a></li>
             <li>
                <button class="btn btn-oval btn-danger-outline dropdown-item" id="logout">Logout</button>
             </li>

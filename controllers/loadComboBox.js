@@ -59,3 +59,34 @@ function load_filtered_privileges() {
         }
     }, 'json');
 }
+
+//GET CUSTOMERS
+function load_affiliate_customers(selected, callBack) {
+    var comboData = '';
+    $.post("Models/modelComboBox2.php", {action: 'load_affiliate_user_combo'}, function (e) {
+        if (e === undefined || e.length === 0 || e === null) {
+            comboData += '<option value="0"> -- No Data Found -- </option>';
+            $('.affiliate_customer').html('').append(comboData);
+            chosenRefresh();
+        } else {
+            $.each(e, function (index, qData) {
+                if (selected !== undefined || e !== null || e.length !== 0) {
+                    if (parseInt(selected) === parseInt(qData.account_id)) {
+                        comboData += '<option value="' + qData.account_id + '" selected>' + qData.email + '</option>';
+                    } else {
+                        comboData += '<option value="' + qData.account_id + '">' + qData.email + '</option>';
+                    }
+                } else {
+                    comboData += '<option value="' + qData.account_id + '">' + qData.email + '</option>';
+                }
+            });
+            $('.affiliate_customer').html('').append(comboData);
+            chosenRefresh();
+        }
+        if (callBack !== undefined) {
+            if (typeof callBack === 'function') {
+                callBack();
+            }
+        }
+    }, "json");
+}
