@@ -123,7 +123,8 @@ if (!isset($_SESSION['user_id'])) {
                                 </div>
                             </div>
 
-                        </div>
+                        </div>  
+                        <!--ROW 1-->
 
                         <div class="row sameheight-container">
                             <div class="col-md-3">
@@ -146,11 +147,80 @@ if (!isset($_SESSION['user_id'])) {
                             <div class="col-md-3">
                                 <div class="card card-block sameheight-item" style="height:200px; cursor: pointer">
                                     <div class="title-block">
-                                        <a class="loadPrevModal"href="client_mangement.php" style="text-decoration: none;color: #000"> 
+                                        <a class="loadPrevModal"href="my_affiliate.php" style="text-decoration: none;color: #000"> 
                                             <div class="caption text-center">
                                                 <div class="thumbnail btn-dashboard" style="border-radius:5px; padding: 10px;">
-                                                    <img src="img/dashboard/contact.png" style="width:65px;height:64px;margin-bottom:30px">
-                                                    <h3 style="color:#000;">Customer Management</h3>
+                                                    <img src="img/dashboard/custmer_detailsb.png" style="width:65px;height:64px;margin-bottom:30px">
+                                                    <h3 style="color:#000;">My Affiliate</h3>
+                                                    <p></p>
+                                                </div>
+                                            </div>
+                                        </a> 
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                <div class="card card-block sameheight-item" style="height:200px; cursor: pointer">
+                                    <div class="title-block">
+                                        <a class="loadPrevModal" href="client_area.php"  style="text-decoration: none;color: #000">
+                                            <div class="caption text-center">
+                                                <div class="thumbnail btn-dashboard" style="border-radius:5px; padding: 10px;">
+                                                    <img src="img/dashboard/custmer_detailsb.png" style="width:64px;height:64px;margin-bottom: 30px">
+                                                    <h3 style="color:#000;">Client Area</h3>
+                                                    <p></p>
+                                                </div>
+                                            </div>
+                                        </a> 
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                <div class="card card-block sameheight-item" style="height:200px; cursor: pointer">
+                                    <div class="title-block">
+                                        <a class="loadPrevModal" href="affiliate_accounts.php" style="text-decoration: none;color: #000">
+                                            <div class="caption text-center">
+                                                <div class="thumbnail btn-dashboard" style="border-radius:5px; padding: 10px;">
+                                                    <img src="img/dashboard/balance.png" style="width:64px;height:64px;margin-bottom: 30px">
+                                                    <h3 style="color:#000;">Affiliate Accounts</h3>
+                                                    <p></p>
+                                                </div>
+                                            </div>
+                                        </a> 
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!--ROW 2-->
+
+                        <div class="row sameheight-container">
+                            <div class="col-md-3">
+                                <div class="card card-block sameheight-item" style="height: 200px;">
+                                    <div class="title-block">
+                                        <a class="hidden"  href="affiliate_tree.php" style="text-decoration: none;color: #000">
+                                            <div class="thumbnail btn-dashboard" style="border-radius:5px; padding: 10px;">
+
+                                                <div class="caption text-center">
+                                                    <img src="img/dashboard/tradeNature.png" style="width:64px;height:64px;margin-bottom: 30px;">
+                                                    <h3>Affiliate Tree</h3>
+                                                    <p></p>
+                                                </div>
+                                            </div>
+                                        </a> 
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                <div class="card card-block sameheight-item" style="height:200px; cursor: pointer">
+                                    <div class="title-block">
+                                        <a class="loadPrevModal"href="my_affiliate.php" style="text-decoration: none;color: #000"> 
+                                            <div class="caption text-center">
+                                                <div class="thumbnail btn-dashboard" style="border-radius:5px; padding: 10px;">
+                                                    <img src="img/dashboard/custmer_detailsb.png" style="width:65px;height:64px;margin-bottom:30px">
+                                                    <h3 style="color:#000;">My Affiliate</h3>
                                                     <p></p>
                                                 </div>
                                             </div>
@@ -192,6 +262,8 @@ if (!isset($_SESSION['user_id'])) {
                             </div>
 
                         </div>
+                        <!--ROW 3-->
+
                     </section>
 
                     <section class="section map-tasks">

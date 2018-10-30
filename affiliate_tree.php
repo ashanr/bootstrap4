@@ -97,6 +97,7 @@ if (!isset($_SESSION['user_id'])) {
                                         <th>#</th>
                                         <th>Client Email</th>
                                         <th>First Name</th>
+                                        <th>Last Name</th>
                                         <th>Parent</th>
                                         <th>Tree</th>
                                         <th>Action</th>
@@ -128,10 +129,9 @@ if (!isset($_SESSION['user_id'])) {
                 $(document).ready(function () {
                     //     show_save();
                     $('#btnUpdate').addClass('hidden');
-                    load_affiliate_customers();
-                    hide_update_btn();
+                   load_affiliate_customers();
                 });
-                hide_update_btn();
+
 
                 $('#logout').click(function () {
                     logout();
@@ -141,23 +141,56 @@ if (!isset($_SESSION['user_id'])) {
 
                     load_affiliate_tree($(this).val());
                 })
-
-                $('.search_table').click(function () {
-                    load_notification_table();
-                });
-
             });
 
-            $('#datepicker,#pub_date,#exp_date').datepicker({
-                weekStart: 1,
-                daysOfWeekHighlighted: "6,0",
-                autoclose: true,
-                todayHighlight: true,
 
-            });
-            $('#datepicker').datepicker("setDate", new Date());
-            $('#pub_date').datepicker();
-            $('#exp_date').datepicker();
+
+            function load_affiliate_tree(text, callBack) {
+                var tableData = '';
+                $.post("table_models/table_model_affiliate.php", {table: 'load_affiliate_tree', account_id: text}, function (e) {
+                    if (e === undefined || e.length === 0 || e === null) {
+                        tableData += '<tr><th colspan="7" class="alert alert-warning text-center"> ----- There are No Affiliate Accounts related to this Member ----- </th></tr>';
+                        $('.table_affiliate_tree tbody').html('').append(tableData);
+                    } else {
+                        $.each(e, function (index, qData) {
+                            index++;
+                            tableData += '<tr>';
+                            tableData += '<td>' + index + '</td>';
+                                                      
+                            tableData += '<td>' + qData.email + '</td>';
+                            tableData += '<td>' +  (qData.firstname ? qData.firstname: '-')+ '</td>';
+                            tableData += '<td>' + (qData.lastname ? qData.lastname: '-') + '</td>';
+                            tableData += '<td>' + (qData.parent ? qData.parent : '-') + '</td>';
+                            tableData += '<td>' + qData.tree + '</td>';
+                            
+//                            tableData += '<td><div class="btn-group"><button class="btn btn-oval btn-info  btn-sm sel_notification" value="' + qData.entity_id + '"><i class="fa fa-edit fa-lg"></i>&nbsp;Select</button>\n\
+//                             <button class="btn btn-oval btn-danger  btn-sm delete_notification" value="' + qData.entity_id + '"><i class="fa fa-times-circle fa-lg"></i>&nbsp;Delete</button></div></td>';
+                            tableData += '</tr>';
+                        });
+
+                        $('.table_affiliate_tree tbody').html('').append(tableData);
+
+                        $('.sel_notification').click(function () {
+                            var id = $(this).val();
+                            $('#id').val($(this).val());
+                            select_notification(id);
+                            //  quotation_select_customer(cus_id);
+                            // chosenRefresh();
+                        });
+                        $('.delete_notification').click(function () {
+                            var id = $(this).val();
+                            $('#id').val($(this).val());
+                            delete_notification(id);
+                        });
+
+                    }
+                    if (callBack !== undefined) {
+                        if (typeof callBack === 'function') {
+                            callBack();
+                        }
+                    }
+                }, 'json');
+            }
 
         </script>
         <!--DATEPICKER--> 

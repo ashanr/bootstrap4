@@ -168,6 +168,8 @@ $result = mysqli_query($link, $query) or die(mysqli_error($link));
                 <div class="dropdown-menu profile-dropdown-menu" aria-labelledby="dropdownMenu1">
                     <a class="dropdown-item" href="#">
                         <i class="fa fa-user icon"></i> Profile </a>
+                    <a class="dropdown-item" href="my_affiliate.php">
+                        <i class="fa fa-bell icon"></i> My Affiliate </a>
                     <a class="dropdown-item" href="#">
                         <i class="fa fa-bell icon"></i> Notifications </a>
                     <a class="dropdown-item" href="#">

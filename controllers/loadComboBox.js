@@ -72,19 +72,19 @@ function load_affiliate_customers(selected, callBack) {
             $.each(e, function (index, qData) {
                 if (selected !== undefined || e !== null || e.length !== 0) {
                     if (parseInt(selected) === parseInt(qData.account_id)) {
-                        comboData += '<option value="' + qData.account_id + '" selected>' + qData.email + '</option>';
+                        comboData += '<option value="' + qData.account_id + '" selected>' + qData.firstname + '&nbsp;&nbsp;    -   &nbsp; &nbsp; ' + qData.email + '</option>';
                     } else {
-                        comboData += '<option value="' + qData.account_id + '">' + qData.email + '</option>';
+                        comboData += '<option value="' + qData.account_id + '">' + qData.firstname + '&nbsp;&nbsp;    -   &nbsp; &nbsp; '  + qData.email + '</option>';
                     }
                 } else {
-                    comboData += '<option value="' + qData.account_id + '">' + qData.email + '</option>';
+                    comboData += '<option value="' + qData.account_id + '">' + qData.firstname + '&nbsp;&nbsp;    -   &nbsp; &nbsp; '  + qData.email + '</option>';
                 }
             });
             $('.affiliate_customer').html('').append(comboData);
             chosenRefresh();
         }
         if (callBack !== undefined) {
-            if (typeof callBack === 'function') {
+            if (typeof callBack === 'function') {sq
                 callBack();
             }
         }

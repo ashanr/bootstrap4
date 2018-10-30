@@ -15,6 +15,8 @@ if (array_key_exists("action", $_POST)) {
         $query_p1 = "SELECT
                         mageplaza_affiliate_account.account_id,
                         mageplaza_affiliate_account.customer_id,
+                        customer_entity.firstname,
+                        customer_entity.lastname,
                         customer_entity.email,
                         mageplaza_affiliate_account.`code`,
                         mageplaza_affiliate_account.group_id,
