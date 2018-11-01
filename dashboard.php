@@ -179,11 +179,11 @@ if (!isset($_SESSION['user_id'])) {
                             <div class="col-md-3">
                                 <div class="card card-block sameheight-item" style="height:200px; cursor: pointer">
                                     <div class="title-block">
-                                        <a class="loadPrevModal" href="affiliate_accounts.php" style="text-decoration: none;color: #000">
+                                        <a class="loadPrevModal" href="affiliate_chart.php" style="text-decoration: none;color: #000">
                                             <div class="caption text-center">
                                                 <div class="thumbnail btn-dashboard" style="border-radius:5px; padding: 10px;">
                                                     <img src="img/dashboard/balance.png" style="width:64px;height:64px;margin-bottom: 30px">
-                                                    <h3 style="color:#000;">Affiliate Accounts</h3>
+                                                    <h3 style="color:#000;">Affiliate Chart</h3>
                                                     <p></p>
                                                 </div>
                                             </div>

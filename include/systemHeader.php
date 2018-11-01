@@ -5,6 +5,7 @@
 <link type="text/css" href="css/alertify/alertify.min.css" rel="stylesheet">
 <link type="text/css" href="css/alertify/alertify.rtl.css" rel="stylesheet">
 <link type="text/css" href="css/alertify/alertify.rtl.min.css" rel="stylesheet">
+<link type="text/css" href="vendors/treant/treant.css" rel="stylesheet">
 
 <!--BOOTSTRAP-->
 <link type="text/css" href="css/bootstrap.css.map" rel="stylesheet">

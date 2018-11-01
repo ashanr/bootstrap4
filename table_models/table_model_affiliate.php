@@ -133,4 +133,41 @@ if (array_key_exists("table", $_POST)) {
         }
         echo json_encode($data); //send data to the table
     }
+    
+    
+     if ($_POST['table'] == 'build_affiliate_tree') {
+
+        $query_affiliate = "SELECT
+                                LENGTH(mageplaza_affiliate_account.tree) - LENGTH(REPLACE(mageplaza_affiliate_account.tree, '/', '')) AS NOOFSEC,
+                                mageplaza_affiliate_account.tree,
+                                SUBSTRING_INDEX(mageplaza_affiliate_account.tree,'/',1) AS PART1,
+                                SUBSTRING_INDEX(SUBSTRING_INDEX(mageplaza_affiliate_account.tree,'/',2),'/',-1) AS PART2,
+                                SUBSTRING_INDEX(SUBSTRING_INDEX(SUBSTRING_INDEX(mageplaza_affiliate_account.tree,'/',-2),'/',-1),'/',-1) AS PART3,
+                                SUBSTRING_INDEX(SUBSTRING_INDEX(SUBSTRING_INDEX(mageplaza_affiliate_account.tree,'/',-2),'/',2),'/',1) AS PART4,
+                                SUBSTRING_INDEX(SUBSTRING_INDEX(SUBSTRING_INDEX(mageplaza_affiliate_account.tree,'/',-2),'/',2),'/',-1) AS PART5,
+                                mageplaza_affiliate_account.account_id,
+                                customer_entity.entity_id,
+                                customer_entity.email,
+                                mageplaza_affiliate_account.parent,
+                                mageplaza_affiliate_account.tree,
+                                mageplaza_affiliate_account.customer_id
+                                FROM
+                                mageplaza_affiliate_account
+                                INNER JOIN customer_entity ON customer_entity.entity_id = mageplaza_affiliate_account.account_id
+                                WHERE SUBSTRING_INDEX(mageplaza_affiliate_account.tree,'/',1) = '{$_POST['account_id']}'";
+                                
+//                      echo $query_affiliate;exit;
+
+        $data = array();
+        MainConfig::connectStoreDB();
+        $link = MainConfig::conStoreDB();
+
+        $result = mysqli_query($link, $query_affiliate) or die(mysqli_error($link));
+        MainConfig::closeDB($link);
+        while ($row = mysqli_fetch_assoc($result)) {
+            $data[] = $row;
+        }
+        echo json_encode($data); //send data to the table
+    }
+    
 }
