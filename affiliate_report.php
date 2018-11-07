@@ -159,17 +159,21 @@ if (!isset($_SESSION['user_id'])) {
             $(function () {
 
                 $(document).ready(function () {
-                    //     show_save();
                     $('#btnUpdate').addClass('hidden');
                     load_affiliate_customers();
                 });
+
                 $('#logout').click(function () {
                     logout();
                 });
+
                 $('.affiliate_customer').change(function () {
                     build_affiliate_tree($(this).val());
-//                    load_affiliate_tree($(this).val());
-                })
+                });
+
+                $('#mkt_manager').change(function () {
+                    build_affiliate_tree($(this).val());
+                });
             });
             function build_affiliate_tree(text, callBack) {
                 var tableData = '';
