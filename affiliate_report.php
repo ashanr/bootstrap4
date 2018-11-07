@@ -83,13 +83,16 @@ if (!isset($_SESSION['user_id'])) {
                                             <div class="title-block">
                                                 <div class="row">
                                                     <div class="col-md-4">
-                                                        <h3 class="title"> Affiliate Tree </h3>
+                                                        <h3 class="title"> Affiliate Report </h3>
                                                     </div>
                                                     <div class="col-md-8">
                                                         <form class="form">
                                                             <div class="form-group">
-                                                                <label class="control-label">Customer</label>
-                                                                <select  class="form-control boxed affiliate_customer"></select>
+                                                                <label class="control-label">Marketing Manager</label>
+                                                                <!--<select  class="form-control boxed affiliate_customer"></select>-->
+                                                                <select  class="form-control boxed " id="mkt_manager">
+                                                                    <option value="23">Zina -  (zina@gmail.com)</option>
+                                                                </select>
                                                             </div>
                                                         </form>
                                                     </div>
