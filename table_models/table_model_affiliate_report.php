@@ -137,6 +137,7 @@ if (array_key_exists("table", $_POST)) {
 
     if ($_POST['table'] == 'build_affiliate_tree') {
 
+        $account_id = $_POST['account_id'];
         $level = $_POST['level'];
 
         $query_affiliate = "SELECT
@@ -156,13 +157,13 @@ if (array_key_exists("table", $_POST)) {
                                 FROM
                                 mageplaza_affiliate_account
                                 INNER JOIN customer_entity ON customer_entity.entity_id = mageplaza_affiliate_account.customer_id
-                                WHERE SUBSTRING_INDEX(mageplaza_affiliate_account.tree,'/',1) = '{$_POST['customer_id']}'  ";
+                                WHERE SUBSTRING_INDEX(mageplaza_affiliate_account.tree,'/',1) = '{$account_id}'  ";
 
-        if($level != "ALL"){
-            $query_affiliate .= " HAVING NOOFSEC = '{$_POST['level']}'";
-        }                        
-                                
-         // echo $query_affiliate;exit;
+        if ($level != "ALL") {
+            $query_affiliate .= " HAVING NOOFSEC = '{$level}'";
+        }
+
+        // echo $query_affiliate;exit;
 
         $data = array();
         MainConfig::connectStoreDB();
