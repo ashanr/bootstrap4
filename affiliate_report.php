@@ -191,7 +191,7 @@ if (!isset($_SESSION['user_id'])) {
             });
             function build_affiliate_tree(level, mkt_manager, callBack) {
                 var tableData = '';
-                $.post("table_models/table_model_affiliate_report.php", {table: 'build_affiliate_tree', account_id: mkt_manager, level: level}, function (e) {
+                $.post("table_models/table_model_affiliate_report.php", {table: 'build_affiliate_tree', customer_id: mkt_manager, level: level}, function (e) {
                     if (e === undefined || e.length === 0 || e === null) {
                         tableData += '<tr><th colspan="7" class="alert alert-warning text-center"> ----- There is No Related Accounts ----- </th></tr>';
                         $('.table_affiliate_tree tbody').html('').append(tableData);
