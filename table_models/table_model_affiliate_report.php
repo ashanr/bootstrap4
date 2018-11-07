@@ -156,7 +156,7 @@ if (array_key_exists("table", $_POST)) {
                                 INNER JOIN customer_entity ON customer_entity.entity_id = mageplaza_affiliate_account.account_id
                                 WHERE SUBSTRING_INDEX(mageplaza_affiliate_account.tree,'/',1) = '{$_POST['account_id']}'";
                                 
-                      echo $query_affiliate;exit;
+                    //  echo $query_affiliate;exit;
 
         $data = array();
         MainConfig::connectStoreDB();
