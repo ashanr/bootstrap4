@@ -186,7 +186,8 @@ if (!isset($_SESSION['user_id'])) {
 
                 $('#mkt_manager, #tree_level').change(function () {
                     var level = $('#tree_level').val();
-                    build_affiliate_tree(level, $(this).val());
+                    var mkt_manager = $('#mkt_manager').val();
+                    build_affiliate_tree(level,mkt_manager);
                 });
             });
             function build_affiliate_tree(level, mkt_manager, callBack) {
