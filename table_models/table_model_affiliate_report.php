@@ -159,10 +159,9 @@ if (array_key_exists("table", $_POST)) {
                                 INNER JOIN customer_entity ON customer_entity.entity_id = mageplaza_affiliate_account.customer_id
                                 WHERE SUBSTRING_INDEX(mageplaza_affiliate_account.tree,'/',1) = '{$account_id}'  ";
 
-        if ($level != "ALL") {
+        if ($level != "all") {
             $query_affiliate .= " HAVING NOOFSEC = '{$level}'";
         }
-
         // echo $query_affiliate;exit;
 
         $data = array();

@@ -186,7 +186,7 @@ if (!isset($_SESSION['user_id'])) {
 
                 $('#mkt_manager, #tree_level').change(function () {
                     var level = $('#tree_level').val();
-                    build_affiliate_tree(level,$(this).val());
+                    build_affiliate_tree(level, $(this).val());
                 });
             });
             function build_affiliate_tree(level, mkt_manager, callBack) {
@@ -203,60 +203,61 @@ if (!isset($_SESSION['user_id'])) {
                             var no_of_sec = qData.NOOFSEC;
                             var parent = qData.parent;
 
-                            if (level == 'ALL') {
-
+                            if (level == 'all') {
                                 index++;
-
-                                if (no_of_sec != 0) {
-                                    tableData += '<tr>';
-                                    tableData += '<td>' + index + '</td>';
-                                }
 
                                 if (no_of_sec == 0) {
 
                                 } else if (no_of_sec == 1) {
-
+                                    tableData += '<tr>';
+                                    tableData += '<td>' + index + '</td>';
                                     tableData += '<td><div class="btn-group"><button class="btn btn-oval btn-success  btn-sm sel_notification" value="' + qData.account_id + '"><i class="fa fa-plus fa-lg"></i>&nbsp;Level 02</button></td>';
                                     tableData += '<td>' + qData.email + '</td>';
                                     tableData += '<td>' + (qData.firstname ? qData.firstname : '-') + '</td>';
                                     tableData += '<td>' + (qData.lastname ? qData.lastname : '-') + '</td>';
                                     tableData += '<td>' + (qData.parent ? qData.parent : '-') + '</td>';
                                     tableData += '<td>' + qData.tree + '</td>';
+                                    tableData += '</tr>';
                                 } else if (no_of_sec == 2) {
+                                    tableData += '<tr>';
+                                    tableData += '<td>' + index + '</td>';
                                     tableData += '<td><div class="btn-group"><button class="btn btn-oval btn-warning  btn-sm sel_notification" value="' + qData.account_id + '"><i class="fa fa-circle fa-lg"></i>&nbsp;Level 03</button></td>';
                                     tableData += '<td>' + qData.email + '</td>';
                                     tableData += '<td>' + (qData.firstname ? qData.firstname : '-') + '</td>';
                                     tableData += '<td>' + (qData.lastname ? qData.lastname : '-') + '</td>';
                                     tableData += '<td>' + (qData.parent ? qData.parent : '-') + '</td>';
                                     tableData += '<td>' + qData.tree + '</td>';
+                                    tableData += '</tr>';
                                 } else if (no_of_sec == 3) {
+                                    tableData += '<tr>';
+                                    tableData += '<td>' + index + '</td>';
                                     tableData += '<td><div class="btn-group"><button class="btn btn-oval btn-danger  btn-sm sel_notification" value="' + qData.account_id + '"><i class="fa fa-dot-circle fa-lg"></i>&nbsp;Level 04</button></td>';
                                     tableData += '<td>' + qData.email + '</td>';
                                     tableData += '<td>' + (qData.firstname ? qData.firstname : '-') + '</td>';
                                     tableData += '<td>' + (qData.lastname ? qData.lastname : '-') + '</td>';
                                     tableData += '<td>' + (qData.parent ? qData.parent : '-') + '</td>';
                                     tableData += '<td>' + qData.tree + '</td>';
+                                    tableData += '</tr>';
 //                            tableData += '<td><div class="btn-group"><button class="btn btn-oval btn-info  btn-sm sel_notification" value="' + qData.entity_id + '"><i class="fa fa-edit fa-lg"></i>&nbsp;Select</button>\n\
 //                             <button class="btn btn-oval btn-danger  btn-sm delete_notification" value="' + qData.entity_id + '"><i class="fa fa-times-circle fa-lg"></i>&nbsp;Delete</button></div></td>';
 
                                 }
-                                if (no_of_sec != 0) {
-                                    tableData += '</tr>';
-                                }
-
                             }
 
                             if (level == 1) {
 
                                 index++;
-                                if (no_of_sec == 1) {
 
+                                if (no_of_sec == 1) {
+                                    tableData += '<tr>';
+                                    tableData += '<td>' + index + '</td>';
                                     tableData += '<td><div class="btn-group"><button class="btn btn-oval btn-success  btn-sm sel_notification" value="' + qData.account_id + '"><i class="fa fa-plus fa-lg"></i>&nbsp;Level 02</button></td>';
                                     tableData += '<td>' + qData.email + '</td>';
                                     tableData += '<td>' + (qData.firstname ? qData.firstname : '-') + '</td>';
                                     tableData += '<td>' + (qData.lastname ? qData.lastname : '-') + '</td>';
                                     tableData += '<td>' + (qData.parent ? qData.parent : '-') + '</td>';
                                     tableData += '<td>' + qData.tree + '</td>';
+                                    tableData += '</tr>';
                                 }
 
                             }
@@ -264,13 +265,15 @@ if (!isset($_SESSION['user_id'])) {
                             if (level == 2) {
                                 index++;
                                 if (no_of_sec == 2) {
-
+                                    tableData += '<tr>';
+                                    tableData += '<td>' + index + '</td>';
                                     tableData += '<td><div class="btn-group"><button class="btn btn-oval btn-success  btn-sm sel_notification" value="' + qData.account_id + '"><i class="fa fa-plus fa-lg"></i>&nbsp;Level 02</button></td>';
                                     tableData += '<td>' + qData.email + '</td>';
                                     tableData += '<td>' + (qData.firstname ? qData.firstname : '-') + '</td>';
                                     tableData += '<td>' + (qData.lastname ? qData.lastname : '-') + '</td>';
                                     tableData += '<td>' + (qData.parent ? qData.parent : '-') + '</td>';
                                     tableData += '<td>' + qData.tree + '</td>';
+                                    tableData += '</tr>';
                                 }
 
                             }
@@ -278,13 +281,15 @@ if (!isset($_SESSION['user_id'])) {
                             if (level == 3) {
                                 index++;
                                 if (no_of_sec == 2) {
-
+                                    tableData += '<tr>';
+                                    tableData += '<td>' + index + '</td>';
                                     tableData += '<td><div class="btn-group"><button class="btn btn-oval btn-success  btn-sm sel_notification" value="' + qData.account_id + '"><i class="fa fa-plus fa-lg"></i>&nbsp;Level 02</button></td>';
                                     tableData += '<td>' + qData.email + '</td>';
                                     tableData += '<td>' + (qData.firstname ? qData.firstname : '-') + '</td>';
                                     tableData += '<td>' + (qData.lastname ? qData.lastname : '-') + '</td>';
                                     tableData += '<td>' + (qData.parent ? qData.parent : '-') + '</td>';
                                     tableData += '<td>' + qData.tree + '</td>';
+                                    tableData += '</tr>';
                                 }
 
                             }
