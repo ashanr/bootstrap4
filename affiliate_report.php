@@ -281,7 +281,7 @@ if (!isset($_SESSION['user_id'])) {
 
                             if (level == 3) {
                                 index++;
-                                if (no_of_sec == 2) {
+                                if (no_of_sec == 3) {
                                     tableData += '<tr>';
                                     tableData += '<td>' + index + '</td>';
                                     tableData += '<td><div class="btn-group"><button class="btn btn-oval btn-success  btn-sm sel_notification" value="' + qData.account_id + '"><i class="fa fa-plus fa-lg"></i>&nbsp;Level 02</button></td>';
