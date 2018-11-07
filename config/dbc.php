@@ -6,7 +6,7 @@ $db_HOST = 'localhost';
 $db_USER = 'root';
 $db_PASS = '';
 $db_NAME = 'usermanage';
-$store_db_NAME = 'test';
+$store_db_NAME = 'mage';
 $store_db_USER = 'root';
 $store_db_PASS = '';
 

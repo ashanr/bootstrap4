@@ -71,12 +71,11 @@ if (!isset($_SESSION['user_id'])) {
                                                     </div>
                                                 </div>
                                             </div>
-
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
+
                         </div>
                     </section>
 
@@ -118,7 +117,7 @@ if (!isset($_SESSION['user_id'])) {
         </div>
 
         <script type="text/javascript">
-           
+
 
             $(function () {
 
@@ -155,60 +154,19 @@ if (!isset($_SESSION['user_id'])) {
             var part5 = qData.PART5;
             chart_config.push(account_id);
             });
-            //    console.log(chart_config.toString());
-            var config = {
-            container: "#basic-example",
-                    connectors: {
-                    type: 'step'
-                    },
-                    node: {
-                    HTMLclass: 'nodeExample1'
-                    }
-            },
-                    13 = {
-                    text: {
-                    name: 'ashan', title: "Chief executive officer", contact: "Tel: 01 213 123 134",
-                    },
-                            image: "img/head/orange.png"
-
-                    }, 14 = {
-            parent: 13,
-                    text: {
-                    name: "Joe Linux", title: "U Technology Officer", contact: "Tel: 01 213 123 134",
-                    },
-                    stackChildren: true,
-                    image: "img/head/green.png"
-            }, 15 = {
-            parent: 14,
-                    text: {
-                    name: "Joe Root", title: "Chief F Officer", contact: "Tel: 01 213 123 134",
-                    },
-                    stackChildren: true,
-                    image: "img/head/green.png"
-            }, 12 = {
-            parent: 15,
-                    text: {
-                    name: "Mary Butler", title: "CTO", contact: "Tel: 01 213 123 134",
-                    },
-                    image: "img/head/ash.png"
-            }
-
-            chart_config = [
-                    config, 13, 14, 15, 12
-
-            ];
+            
             new Treant(chart_config);
             }, 'json');
-            }
+            }//DRAW AFFILIATE TREE
+
+
+
+            //    console.log(chart_config.toString());
+
 
 
             /*
              
-             function build_affiliate_tree(text, callBack) {
-             
-             $.post("table_models/table_model_affiliate.php", {table: 'build_affiliate_tree', account_id: text}, function (e) {
-             
-             var chart_config = [];
              var config = {
              container: "#basic-example",
              connectors: {
@@ -218,99 +176,153 @@ if (!isset($_SESSION['user_id'])) {
              HTMLclass: 'nodeExample1'
              }
              },
-             ceo = {
+             13 = {
              text: {
-             name: 'ashan',
-             title: "Chief executive officer",
-             contact: "Tel: 01 213 123 134",
+             name: 'ashan', title: "Chief executive officer", contact: "Tel: 01 213 123 134",
              },
              image: "img/head/orange.png"
-             }
-             , cto = {
-             parent: ceo,
-             text:{
-             name: "Joe Linux",
-             title: "Chief Technology Officer",
+             
+             }, 14 = {
+             parent: 13,
+             text: {
+             name: "Joe Linux", title: "U Technology Officer", contact: "Tel: 01 213 123 134",
              },
              stackChildren: true,
              image: "img/head/green.png"
-             }, ;
-             new Treant(chart_config); return;
-             if (e === undefined || e.length === 0 || e === null) {
-             tableData = 'no data found';
-             $('.message').html('').append(tableData);
-             } else {
-             
-             $.each(e, function (index, qData) {
-             index++;
-             var no_of_sec = qData.NOOFSEC;
-             var email = qData.email;
-             var account_id = qData.account_id;
-             var customer_id = qData.customer_id;
-             var parent = qData.parent;
-             var part1 = qData.PART1;
-             var part2 = qData.PART2;
-             var part3 = qData.PART3;
-             var part4 = qData.PART4;
-             var part5 = qData.PART5;
-             if (no_of_sec == '1') {
-             
-             config +=
-             customer_id = {
+             }, 15 = {
+             parent: 14,
              text: {
-             name: email,
-             title: "Chief executive officer",
-             contact: "Tel: 01 213 123 134",
+             name: "Joe Root", title: "Chief F Officer", contact: "Tel: 01 213 123 134",
              },
-             image: "img/head/orange.png"
+             stackChildren: true,
+             image: "img/head/green.png"
+             }, 12 = {
+             parent: 15,
+             text: {
+             name: "Mary Butler", title: "CTO", contact: "Tel: 01 213 123 134",
+             },
+             image: "img/head/ash.png"
              }
-             , ;
-             }
-             //             else if (no_of_sec == '2') {
-             //
-             //            config +=
-             //                    customer_id = {
-             //
-             //                    parent: part2,
-             //                            stackChildren: true,
-             //                            text:{
-             //                            name: email,
-             //                                    title: "Chief Business Officer",
-             //                            },
-             //                            image: "img/head/green.png"
-             //                    }
-             //            , ;
-             //            } else if (no_of_sec == '3') {
-             //
-             //            config +=
-             //                    customer_id = {
-             //                    parent: part4,
-             //                            stackChildren: true,
-             //                            text:{
-             //                            name: email,
-             //                                    title: "Chief Business Officer",
-             //                            },
-             //                            image: "img/head/green.png"
-             //                    }
-             //            , ;
-             //            }
              
-             //    chart_config.push(account_id);
-             chart_config.push(45);
-             });
-             config += chart_config;
-             new Treant(chart_config)
-             }
-             if (callBack !== undefined) {
-             if (typeof callBack === 'function') {
-             callBack();
-             }
-             }
+             chart_config = [
+             config, 13, 14, 15, 12
+             
+             ];
+             new Treant(chart_config);
              }, 'json');
              }
              
-             
              */
+
+
+            / *
+                    function build_affiliate_tree(text, callBack) {
+
+                    $.post("table_models/table_model_affiliate.php", {table: 'build_affiliate_tree', account_id: text}, function (e) {
+
+                    var chart_config = [];
+                    var config = {
+                    container: "#basic-example",
+                            connectors: {
+                            type: 'step'
+                            },
+                            node: {
+                            HTMLclass: 'nodeExample1'
+                            }
+                    },
+                            ceo = {
+                            text: {
+                            name: 'ashan',
+                                    title: "Chief executive officer",
+                                    contact: "Tel: 01 213 123 134",
+                            },
+                                    image: "img/head/orange.png"
+                            }
+                    , cto = {
+                    parent: ceo,
+                            text:{
+                            name: "Joe Linux",
+                                    title: "Chief Technology Officer",
+                            },
+                            stackChildren: true,
+                            image: "img/head/green.png"
+                    }, ;
+                    new Treant(chart_config); return;
+                    if (e === undefined || e.length === 0 || e === null) {
+                    tableData = 'no data found';
+                    $('.message').html('').append(tableData);
+                    } else {
+
+                    $.each(e, function (index, qData) {
+                    index++;
+                    var no_of_sec = qData.NOOFSEC;
+                    var email = qData.email;
+                    var account_id = qData.account_id;
+                    var customer_id = qData.customer_id;
+                    var parent = qData.parent;
+                    var part1 = qData.PART1;
+                    var part2 = qData.PART2;
+                    var part3 = qData.PART3;
+                    var part4 = qData.PART4;
+                    var part5 = qData.PART5;
+                    if (no_of_sec == '1') {
+
+                    config +=
+                            customer_id = {
+                            text: {
+                            name: email,
+                                    title: "Chief executive officer",
+                                    contact: "Tel: 01 213 123 134",
+                            },
+                                    image: "img/head/orange.png"
+                            }
+                    , ;
+                    }
+                    //             else if (no_of_sec == '2') {
+                    //
+                    //            config +=
+                    //                    customer_id = {
+                    //
+                    //                    parent: part2,
+                    //                            stackChildren: true,
+                    //                            text:{
+                    //                            name: email,
+                    //                                    title: "Chief Business Officer",
+                    //                            },
+                    //                            image: "img/head/green.png"
+                    //                    }
+                    //            , ;
+                    //            } else if (no_of_sec == '3') {
+                    //
+                    //            config +=
+                    //                    customer_id = {
+                    //                    parent: part4,
+                    //                            stackChildren: true,
+                    //                            text:{
+                    //                            name: email,
+                    //                                    title: "Chief Business Officer",
+                    //                            },
+                    //                            image: "img/head/green.png"
+                    //                    }
+                    //            , ;
+                    //            }
+
+                    //    chart_config.push(account_id);
+                    chart_config.push(45);
+                    });
+                    config += chart_config;
+                    new Treant(chart_config)
+                    }
+                    if (callBack !== undefined) {
+                    if (typeof callBack === 'function') {
+                    callBack();
+                    }
+                    }
+                    }, 'json');
+                    }
+
+
+            * /
 
 
 
