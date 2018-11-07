@@ -91,6 +91,7 @@ if (!isset($_SESSION['user_id'])) {
                                                                 <label class="control-label">Marketing Manager</label>
                                                                 <!--<select  class="form-control boxed affiliate_customer"></select>-->
                                                                 <select  class="form-control boxed " id="mkt_manager">
+                                                                    <option value="13">Test -  (test@mail.com)</option>
                                                                     <option value="23">Zina -  (zina@gmail.com)</option>
                                                                 </select>
                                                             </div>
