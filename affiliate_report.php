@@ -85,7 +85,23 @@ if (!isset($_SESSION['user_id'])) {
                                                     <div class="col-md-4">
                                                         <h3 class="title"> Affiliate Report </h3>
                                                     </div>
-                                                    <div class="col-md-8">
+                                                    <div class="col-md-4">
+                                                        <form class="form">
+                                                            <div class="form-group">
+                                                                <label class="control-label">Affiliate Level</label>
+                                                                <!--<select  class="form-control boxed affiliate_customer"></select>-->
+                                                                <select  class="form-control boxed " id="tree_level">
+                                                                    <option value="all">ALL</option>
+                                                                    <option value="1" >Level 1</option>
+                                                                    <option value="2">Level 2</option>
+                                                                    <option value="3">Level 3</option>
+                                                                    <option value="4">Level 4</option>
+                                                                    <option value="5">Level 5</option>
+                                                                </select>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                    <div class="col-md-4">
                                                         <form class="form">
                                                             <div class="form-group">
                                                                 <label class="control-label">Marketing Manager</label>
@@ -167,70 +183,114 @@ if (!isset($_SESSION['user_id'])) {
                     logout();
                 });
 
-                $('.affiliate_customer').change(function () {
-                    build_affiliate_tree($(this).val());
-                });
 
-                $('#mkt_manager').change(function () {
-                    build_affiliate_tree($(this).val());
+                $('#mkt_manager, #tree_level').change(function () {
+                    var level = $('#tree_level').val();
+                    build_affiliate_tree(level,$(this).val());
                 });
             });
-            function build_affiliate_tree(text, callBack) {
+            function build_affiliate_tree(level, mkt_manager, callBack) {
                 var tableData = '';
-                $.post("table_models/table_model_affiliate_report.php", {table: 'build_affiliate_tree', account_id: text}, function (e) {
+                $.post("table_models/table_model_affiliate_report.php", {table: 'build_affiliate_tree', account_id: mkt_manager, level: level}, function (e) {
                     if (e === undefined || e.length === 0 || e === null) {
                         tableData += '<tr><th colspan="7" class="alert alert-warning text-center"> ----- There is No Related Accounts ----- </th></tr>';
                         $('.table_affiliate_tree tbody').html('').append(tableData);
                     } else {
+                        var index = 0;
+
                         $.each(e, function (index, qData) {
-                            index++;
-                            tableData += '<tr>';
-                            tableData += '<td>' + index + '</td>';
+
                             var no_of_sec = qData.NOOFSEC;
                             var parent = qData.parent;
 
+                            if (level == 'ALL') {
 
+                                index++;
 
-                            if (no_of_sec == 0) {
+                                if (no_of_sec != 0) {
+                                    tableData += '<tr>';
+                                    tableData += '<td>' + index + '</td>';
+                                }
 
-                                tableData += '<td><div class="btn-group"><button class="btn btn-oval btn-success  btn-sm sel_notification" value="' + qData.account_id + '"><i class="fa fa-plus fa-lg"></i>&nbsp;Level 02</button></td>';
-                                tableData += '<td>' + qData.email + '</td>';
-                                tableData += '<td>' + (qData.firstname ? qData.firstname : '-') + '</td>';
-                                tableData += '<td>' + (qData.lastname ? qData.lastname : '-') + '</td>';
-                                tableData += '<td>' + (qData.parent ? qData.parent : '-') + '</td>';
-                                tableData += '<td>' + qData.tree + '</td>';
-                            } else if (no_of_sec == 1) {
+                                if (no_of_sec == 0) {
 
-                                tableData += '<td><div class="btn-group"><button class="btn btn-oval btn-success  btn-sm sel_notification" value="' + qData.account_id + '"><i class="fa fa-plus fa-lg"></i>&nbsp;Level 02</button></td>';
-                                tableData += '<td>' + qData.email + '</td>';
-                                tableData += '<td>' + (qData.firstname ? qData.firstname : '-') + '</td>';
-                                tableData += '<td>' + (qData.lastname ? qData.lastname : '-') + '</td>';
-                                tableData += '<td>' + (qData.parent ? qData.parent : '-') + '</td>';
-                                tableData += '<td>' + qData.tree + '</td>';
-                            } else if (no_of_sec == 2) {
-                                tableData += '<td><div class="btn-group"><button class="btn btn-oval btn-warning  btn-sm sel_notification" value="' + qData.account_id + '"><i class="fa fa-circle fa-lg"></i>&nbsp;Level 03</button></td>';
-                                tableData += '<td>' + qData.email + '</td>';
-                                tableData += '<td>' + (qData.firstname ? qData.firstname : '-') + '</td>';
-                                tableData += '<td>' + (qData.lastname ? qData.lastname : '-') + '</td>';
-                                tableData += '<td>' + (qData.parent ? qData.parent : '-') + '</td>';
-                                tableData += '<td>' + qData.tree + '</td>';
+                                } else if (no_of_sec == 1) {
+
+                                    tableData += '<td><div class="btn-group"><button class="btn btn-oval btn-success  btn-sm sel_notification" value="' + qData.account_id + '"><i class="fa fa-plus fa-lg"></i>&nbsp;Level 02</button></td>';
+                                    tableData += '<td>' + qData.email + '</td>';
+                                    tableData += '<td>' + (qData.firstname ? qData.firstname : '-') + '</td>';
+                                    tableData += '<td>' + (qData.lastname ? qData.lastname : '-') + '</td>';
+                                    tableData += '<td>' + (qData.parent ? qData.parent : '-') + '</td>';
+                                    tableData += '<td>' + qData.tree + '</td>';
+                                } else if (no_of_sec == 2) {
+                                    tableData += '<td><div class="btn-group"><button class="btn btn-oval btn-warning  btn-sm sel_notification" value="' + qData.account_id + '"><i class="fa fa-circle fa-lg"></i>&nbsp;Level 03</button></td>';
+                                    tableData += '<td>' + qData.email + '</td>';
+                                    tableData += '<td>' + (qData.firstname ? qData.firstname : '-') + '</td>';
+                                    tableData += '<td>' + (qData.lastname ? qData.lastname : '-') + '</td>';
+                                    tableData += '<td>' + (qData.parent ? qData.parent : '-') + '</td>';
+                                    tableData += '<td>' + qData.tree + '</td>';
+                                } else if (no_of_sec == 3) {
+                                    tableData += '<td><div class="btn-group"><button class="btn btn-oval btn-danger  btn-sm sel_notification" value="' + qData.account_id + '"><i class="fa fa-dot-circle fa-lg"></i>&nbsp;Level 04</button></td>';
+                                    tableData += '<td>' + qData.email + '</td>';
+                                    tableData += '<td>' + (qData.firstname ? qData.firstname : '-') + '</td>';
+                                    tableData += '<td>' + (qData.lastname ? qData.lastname : '-') + '</td>';
+                                    tableData += '<td>' + (qData.parent ? qData.parent : '-') + '</td>';
+                                    tableData += '<td>' + qData.tree + '</td>';
 //                            tableData += '<td><div class="btn-group"><button class="btn btn-oval btn-info  btn-sm sel_notification" value="' + qData.entity_id + '"><i class="fa fa-edit fa-lg"></i>&nbsp;Select</button>\n\
 //                             <button class="btn btn-oval btn-danger  btn-sm delete_notification" value="' + qData.entity_id + '"><i class="fa fa-times-circle fa-lg"></i>&nbsp;Delete</button></div></td>';
 
-                            } else if (no_of_sec == 3) {
-                                tableData += '<td><div class="btn-group"><button class="btn btn-oval btn-danger  btn-sm sel_notification" value="' + qData.account_id + '"><i class="fa fa-dot-circle fa-lg"></i>&nbsp;Level 04</button></td>';
-                                tableData += '<td>' + qData.email + '</td>';
-                                tableData += '<td>' + (qData.firstname ? qData.firstname : '-') + '</td>';
-                                tableData += '<td>' + (qData.lastname ? qData.lastname : '-') + '</td>';
-                                tableData += '<td>' + (qData.parent ? qData.parent : '-') + '</td>';
-                                tableData += '<td>' + qData.tree + '</td>';
-//                            tableData += '<td><div class="btn-group"><button class="btn btn-oval btn-info  btn-sm sel_notification" value="' + qData.entity_id + '"><i class="fa fa-edit fa-lg"></i>&nbsp;Select</button>\n\
-//                             <button class="btn btn-oval btn-danger  btn-sm delete_notification" value="' + qData.entity_id + '"><i class="fa fa-times-circle fa-lg"></i>&nbsp;Delete</button></div></td>';
+                                }
+                                if (no_of_sec != 0) {
+                                    tableData += '</tr>';
+                                }
+
+                            }
+
+                            if (level == 1) {
+
+                                index++;
+                                if (no_of_sec == 1) {
+
+                                    tableData += '<td><div class="btn-group"><button class="btn btn-oval btn-success  btn-sm sel_notification" value="' + qData.account_id + '"><i class="fa fa-plus fa-lg"></i>&nbsp;Level 02</button></td>';
+                                    tableData += '<td>' + qData.email + '</td>';
+                                    tableData += '<td>' + (qData.firstname ? qData.firstname : '-') + '</td>';
+                                    tableData += '<td>' + (qData.lastname ? qData.lastname : '-') + '</td>';
+                                    tableData += '<td>' + (qData.parent ? qData.parent : '-') + '</td>';
+                                    tableData += '<td>' + qData.tree + '</td>';
+                                }
+
+                            }
+
+                            if (level == 2) {
+                                index++;
+                                if (no_of_sec == 2) {
+
+                                    tableData += '<td><div class="btn-group"><button class="btn btn-oval btn-success  btn-sm sel_notification" value="' + qData.account_id + '"><i class="fa fa-plus fa-lg"></i>&nbsp;Level 02</button></td>';
+                                    tableData += '<td>' + qData.email + '</td>';
+                                    tableData += '<td>' + (qData.firstname ? qData.firstname : '-') + '</td>';
+                                    tableData += '<td>' + (qData.lastname ? qData.lastname : '-') + '</td>';
+                                    tableData += '<td>' + (qData.parent ? qData.parent : '-') + '</td>';
+                                    tableData += '<td>' + qData.tree + '</td>';
+                                }
+
+                            }
+
+                            if (level == 3) {
+                                index++;
+                                if (no_of_sec == 2) {
+
+                                    tableData += '<td><div class="btn-group"><button class="btn btn-oval btn-success  btn-sm sel_notification" value="' + qData.account_id + '"><i class="fa fa-plus fa-lg"></i>&nbsp;Level 02</button></td>';
+                                    tableData += '<td>' + qData.email + '</td>';
+                                    tableData += '<td>' + (qData.firstname ? qData.firstname : '-') + '</td>';
+                                    tableData += '<td>' + (qData.lastname ? qData.lastname : '-') + '</td>';
+                                    tableData += '<td>' + (qData.parent ? qData.parent : '-') + '</td>';
+                                    tableData += '<td>' + qData.tree + '</td>';
+                                }
 
                             }
 
                         });
-                        tableData += '</tr>';
+
                         $('.table_affiliate_tree tbody').html('').append(tableData);
                     }
                     if (callBack !== undefined) {
