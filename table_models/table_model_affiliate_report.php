@@ -153,7 +153,7 @@ if (array_key_exists("table", $_POST)) {
                                 mageplaza_affiliate_account.customer_id
                                 FROM
                                 mageplaza_affiliate_account
-                                INNER JOIN customer_entity ON customer_entity.entity_id = mageplaza_affiliate_account.account_id
+                                INNER JOIN customer_entity ON customer_entity.entity_id = mageplaza_affiliate_account.customer_id
                                 WHERE SUBSTRING_INDEX(mageplaza_affiliate_account.tree,'/',1) = '{$_POST['account_id']}'";
                                 
                     //  echo $query_affiliate;exit;
